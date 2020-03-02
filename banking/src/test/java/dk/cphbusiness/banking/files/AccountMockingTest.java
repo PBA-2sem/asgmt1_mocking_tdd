@@ -17,6 +17,7 @@ public class AccountMockingTest {
     public void testAccountTransfer() {
         final Customer customer = context.mock(Customer.class);
         final Bank bank = context.mock(Bank.class);
+        
         final String targetNumber = "TGT54321";
         Account source = new AccountFake(bank, customer, "SRC54321");
         Account target = new AccountFake(bank, customer, targetNumber);
@@ -24,15 +25,18 @@ public class AccountMockingTest {
             {
                 oneOf(bank).getAccount(targetNumber);
                 will(returnValue(target));
-                //oneOf(bank).getName();
             }
         });
 
         source.transfer(10000, "TGT54321");
         assertEquals(-10000, source.getBalance());
         assertEquals(10000, target.getBalance());
+        
+        assertEquals(source.getWithdrawals().get(0).getAmount(), -10000);
+        assertEquals(target.getDeposits().get(0).getAmount(), 10000);
+        
+        
 
-        //context.assertIsSatisfied();
     }
 
 }
