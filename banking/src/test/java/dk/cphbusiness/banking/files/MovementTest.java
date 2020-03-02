@@ -1,6 +1,7 @@
 package dk.cphbusiness.banking.files;
 
 import dk.cphbusiness.banking.files.fakes.MovementFake;
+import dk.cphbusiness.banking.files.stub.TimeStub;
 import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,9 +21,9 @@ public class MovementTest {
     @Test
     public void testGetTime() {
         System.out.println("getTime");
-        LocalDateTime expResult = LocalDateTime.now();
+        LocalDateTime expResult = TimeStub.getFixedTime();
         LocalDateTime result = instance.getTime();
-        assertEquals(expResult.toString().substring(0, 10), result.toString().substring(0, 10)); // TODO change me 
+        assertEquals(expResult,result);
     }
 
     @Test

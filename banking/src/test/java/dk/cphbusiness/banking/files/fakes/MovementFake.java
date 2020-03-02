@@ -1,6 +1,7 @@
 package dk.cphbusiness.banking.files.fakes;
 
 import dk.cphbusiness.banking.files.Movement;
+import dk.cphbusiness.banking.files.stub.TimeStub;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 
         public MovementFake(long amount) {
 
-            this.time = LocalDateTime.now();
+            this.time = TimeStub.getFixedTime();
             this.amount = amount;
         }
 
