@@ -1,6 +1,6 @@
 package dk.cphbusiness.banking.files;
 
-import dk.cphbusiness.banking.files.dummy.MovementDummy;
+import dk.cphbusiness.banking.files.fakes.MovementFake;
 import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ public class MovementTest {
     Movement instance;
 
     public MovementTest() {
-        instance = new MovementDummy(1000);
+        instance = new MovementFake(1000);
     }
 
     @Test

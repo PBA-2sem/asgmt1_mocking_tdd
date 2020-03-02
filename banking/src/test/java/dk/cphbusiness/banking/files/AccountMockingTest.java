@@ -1,6 +1,6 @@
 package dk.cphbusiness.banking.files;
 
-import dk.cphbusiness.banking.files.dummy.AccountDummy;
+import dk.cphbusiness.banking.files.fakes.AccountFake;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
@@ -18,8 +18,8 @@ public class AccountMockingTest {
         final Customer customer = context.mock(Customer.class);
         final Bank bank = context.mock(Bank.class);
         final String targetNumber = "TGT54321";
-        Account source = new AccountDummy(bank, customer, "SRC54321");
-        Account target = new AccountDummy(bank, customer, targetNumber);
+        Account source = new AccountFake(bank, customer, "SRC54321");
+        Account target = new AccountFake(bank, customer, targetNumber);
         context.checking(new Expectations() {
             {
                 oneOf(bank).getAccount(targetNumber);

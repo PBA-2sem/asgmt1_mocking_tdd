@@ -1,4 +1,4 @@
-package dk.cphbusiness.banking.files.dummy;
+package dk.cphbusiness.banking.files.fakes;
 
 import dk.cphbusiness.banking.files.Account;
 import dk.cphbusiness.banking.files.Bank;
@@ -13,13 +13,13 @@ import static org.junit.Assert.*;
  *
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
-public class CustomerDummy implements Customer {
+public class CustomerFake implements Customer {
 
     private String cpr;
     private String name;
     private Bank bank;
 
-    public CustomerDummy(String cpr, String name, Bank bank) {
+    public CustomerFake(String cpr, String name, Bank bank) {
         this.cpr = cpr;
         this.name = name;
         this.bank = bank;

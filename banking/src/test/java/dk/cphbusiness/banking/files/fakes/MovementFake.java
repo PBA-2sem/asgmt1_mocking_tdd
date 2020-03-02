@@ -1,4 +1,4 @@
-package dk.cphbusiness.banking.files.dummy;
+package dk.cphbusiness.banking.files.fakes;
 
 import dk.cphbusiness.banking.files.Movement;
 import java.time.LocalDateTime;
@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
  *
  * @author awha8
  */
-    public class MovementDummy implements Movement {
+    public class MovementFake implements Movement {
 
         private LocalDateTime time;
         private long amount;
 
-        public MovementDummy(long amount) {
+        public MovementFake(long amount) {
 
             this.time = LocalDateTime.now();
             this.amount = amount;

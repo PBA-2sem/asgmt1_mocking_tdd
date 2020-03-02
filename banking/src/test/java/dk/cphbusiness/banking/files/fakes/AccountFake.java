@@ -1,4 +1,4 @@
-package dk.cphbusiness.banking.files.dummy;
+package dk.cphbusiness.banking.files.fakes;
 
 import dk.cphbusiness.banking.files.Account;
 import dk.cphbusiness.banking.files.Bank;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author awha8
  */
-    public class AccountDummy implements Account {
+    public class AccountFake implements Account {
 
         private Bank bank;
         private Customer customer;
@@ -20,7 +20,7 @@ import java.util.List;
         private List<Movement> withdrawals;
         private List<Movement> deposits;
 
-        public AccountDummy(Bank bank, Customer customer, String number) {
+        public AccountFake(Bank bank, Customer customer, String number) {
             this.bank = bank;
             this.customer = customer;
             this.number = number;
@@ -33,11 +33,11 @@ import java.util.List;
             target.setBalance(amount);
 
             // create deposit movement TODO
-            Movement movement_deposit = new MovementDummy(amount);
+            Movement movement_deposit = new MovementFake(amount);
             target.getDeposits().add(movement_deposit);
 
             // create withdrawal movement
-            Movement movement_withdrawal = new MovementDummy(amount);
+            Movement movement_withdrawal = new MovementFake(amount);
             withdrawals.add(movement_withdrawal);
 
         }

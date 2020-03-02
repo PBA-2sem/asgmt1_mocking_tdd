@@ -1,4 +1,4 @@
-package dk.cphbusiness.banking.files.dummy;
+package dk.cphbusiness.banking.files.fakes;
 
 import dk.cphbusiness.banking.files.Account;
 import dk.cphbusiness.banking.files.Bank;
@@ -9,13 +9,13 @@ import java.util.Map;
  *
  * @author awha8
  */
-    public class BankDummy implements Bank {
+    public class BankFake implements Bank {
 
         private String cvr;
         private String name;
         private Map<String, Account> accounts;
 
-        public BankDummy(String cvr, String name, Map<String, Account> accounts) {
+        public BankFake(String cvr, String name, Map<String, Account> accounts) {
             this.cvr = cvr;
             this.name = name;
             this.accounts = accounts;
