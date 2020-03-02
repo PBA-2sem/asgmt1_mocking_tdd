@@ -1,6 +1,6 @@
 package dk.cphbusiness.banking.files;
 
-import dk.cphbusiness.banking.files.Movement;
+import dk.cphbusiness.banking.files.dummy.MovementDummy;
 import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ public class MovementTest {
     Movement instance;
 
     public MovementTest() {
-        instance = new MovementImpl(1000);
+        instance = new MovementDummy(1000);
     }
 
     @Test
@@ -22,7 +22,7 @@ public class MovementTest {
         System.out.println("getTime");
         LocalDateTime expResult = LocalDateTime.now();
         LocalDateTime result = instance.getTime();
-        assertEquals(expResult.toString().substring(0, 10), result.toString().substring(0, 10));
+        assertEquals(expResult.toString().substring(0, 10), result.toString().substring(0, 10)); // TODO change me 
     }
 
     @Test
@@ -33,27 +33,6 @@ public class MovementTest {
         assertEquals(expResult, result);
     }
 
-    public static class MovementImpl implements Movement {
 
-        private LocalDateTime time;
-        private long amount;
-
-        public MovementImpl(long amount) {
-
-            this.time = LocalDateTime.now();
-            this.amount = amount;
-        }
-
-        @Override
-        public LocalDateTime getTime() {
-            return time;
-        }
-
-        @Override
-        public long getAmount() {
-            return amount;
-        }
-
-    }
 
 }
