@@ -3,6 +3,7 @@ package dk.cphbusiness.banking.files.stub;
 import java.time.*;
 
 /**
+ * This is a Stub to be used for testing of various getTime methods.
  *
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  * Code borrowed from
@@ -10,6 +11,11 @@ import java.time.*;
  */
 public class TimeStub {
 
+    /**
+     * This method will be used for returning a fixed/static timestamp.
+     *
+     * @return LocalDateTime
+     */
     public static LocalDateTime getFixedTime() {
         Instant instant = Instant.parse("2020-03-02T12:00:00.00Z");
         ZoneId zoneId = ZoneId.of("Europe/Paris"); //https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html#SHORT_IDS

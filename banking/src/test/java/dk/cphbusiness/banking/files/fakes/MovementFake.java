@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
  */
     public class MovementFake implements Movement {
 
-        private LocalDateTime time;
-        private long amount;
+        private final LocalDateTime time;
+        private final long amount;
 
         public MovementFake(long amount) {
 

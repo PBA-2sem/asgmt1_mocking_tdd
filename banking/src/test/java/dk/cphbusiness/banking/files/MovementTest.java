@@ -7,8 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Tests for MovementFake class
  *
- * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
 public class MovementTest {
 
@@ -23,7 +23,7 @@ public class MovementTest {
         System.out.println("getTime");
         LocalDateTime expResult = TimeStub.getFixedTime();
         LocalDateTime result = instance.getTime();
-        assertEquals(expResult,result);
+        assertEquals(expResult, result);
     }
 
     @Test
@@ -33,7 +33,5 @@ public class MovementTest {
         long result = instance.getAmount();
         assertEquals(expResult, result);
     }
-
-
 
 }

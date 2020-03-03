@@ -6,8 +6,6 @@ import dk.cphbusiness.banking.files.Customer;
 import dk.cphbusiness.banking.files.Movement;
 import java.util.List;
 import java.util.Map;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -15,9 +13,9 @@ import static org.junit.Assert.*;
  */
 public class CustomerFake implements Customer {
 
-    private String cpr;
-    private String name;
-    private Bank bank;
+    private final String cpr;
+    private final String name;
+    private final Bank bank;
 
     public CustomerFake(String cpr, String name, Bank bank) {
         this.cpr = cpr;

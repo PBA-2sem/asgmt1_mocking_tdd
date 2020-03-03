@@ -13,12 +13,12 @@ import java.util.List;
  */
 public class AccountFake implements Account {
 
-    private Bank bank;
-    private Customer customer;
-    private String number;
+    private final Bank bank;
+    private final Customer customer;
+    private final String number;
     private long balance = 0;
-    private List<Movement> withdrawals;
-    private List<Movement> deposits;
+    private final List<Movement> withdrawals;
+    private final List<Movement> deposits;
 
     public AccountFake(Bank bank, Customer customer, String number) {
         this.bank = bank;

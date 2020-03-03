@@ -27,15 +27,13 @@ public class AccountMockingTest {
                 will(returnValue(target));
             }
         });
-
+        
         source.transfer(10000, "TGT54321");
         assertEquals(-10000, source.getBalance());
         assertEquals(10000, target.getBalance());
         
         assertEquals(source.getWithdrawals().get(0).getAmount(), -10000);
         assertEquals(target.getDeposits().get(0).getAmount(), 10000);
-        
-        
 
     }
 

@@ -11,9 +11,9 @@ import java.util.Map;
  */
     public class BankFake implements Bank {
 
-        private String cvr;
-        private String name;
-        private Map<String, Account> accounts;
+        private final String cvr;
+        private final String name;
+        private final Map<String, Account> accounts;
 
         public BankFake(String cvr, String name, Map<String, Account> accounts) {
             this.cvr = cvr;
