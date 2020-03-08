@@ -54,11 +54,9 @@ public class CustomerMockingTest {
         final String cCpr = "123456789";
         final String cCpr2 = "1234567892";
         
-
         Customer c = new CustomerFake(cCpr, cName, bank);
         Customer c2 = new CustomerFake(cCpr2, cName2, bank2);
-        
-        
+               
         final String targetNumber = "TGT54321";
         Account source = new AccountFake(bank, c, "SRC54321");
         Account target = new AccountFake(bank, c2, targetNumber);
@@ -73,7 +71,7 @@ public class CustomerMockingTest {
                //atLeast(1).of(bank2).getAccount(target.getNumber());
               //  will(returnValue(target));
                 
-                oneOf(account).transfer(10000, target);
+              //  oneOf(account).transfer(10000, target);
             }
         });
         c.transfer(10000, source, target);
