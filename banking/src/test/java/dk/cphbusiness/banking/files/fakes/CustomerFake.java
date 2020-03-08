@@ -16,6 +16,7 @@ public class CustomerFake implements Customer {
     private final String cpr;
     private final String name;
     private final Bank bank;
+    
 
     public CustomerFake(String cpr, String name, Bank bank) {
         this.cpr = cpr;
