@@ -65,11 +65,6 @@ public class AccountFake implements Account {
     }
 
     @Override
-    public void setBalance(long amount) {
-        balance = amount;
-    }
-
-    @Override
     public List<Movement> getWithdrawals() {
         return withdrawals;
 
@@ -83,5 +78,10 @@ public class AccountFake implements Account {
     @Override
     public long getBalance() {
         return balance;
+    }
+    
+    @Override
+    public void setBalance(long amount){
+        this.balance = amount;
     }
 }

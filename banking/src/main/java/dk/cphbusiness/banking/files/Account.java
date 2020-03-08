@@ -77,4 +77,5 @@ public interface Account {
      * @param amount
      */
     void setBalance(long amount);
+
 }
