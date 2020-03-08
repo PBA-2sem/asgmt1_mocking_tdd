@@ -24,6 +24,11 @@ public class CustomerMockingTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
+    @Before
+    public void setup(){
+    
+    }
+    
     @Test
     public void testCustomerGetName() {
         final Bank bank = context.mock(Bank.class);
@@ -63,15 +68,8 @@ public class CustomerMockingTest {
                      
         context.checking(new Expectations() {
             {
-                //oneOf(customer).transfer(10000, source, target);
                 atLeast(1).of(bank).getAccount(source.getNumber()); 
                 will(returnValue(source));
-             
-                
-               //atLeast(1).of(bank2).getAccount(target.getNumber());
-              //  will(returnValue(target));
-                
-              //  oneOf(account).transfer(10000, target);
             }
         });
         c.transfer(10000, source, target);
