@@ -25,7 +25,7 @@ public class CustomerMockingTest {
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
     @Test
-    public void testCustomer() {
+    public void testCustomerGetName() {
         final Bank bank = context.mock(Bank.class);
         final String cName = "Andreas";
         final String cCpr = "123456789";
@@ -44,30 +44,39 @@ public class CustomerMockingTest {
 
     @Test
     public void testCustomerTransfer() {
-        final Account account = context.mock(Account.class);
+       final Account account = context.mock(Account.class);
         final Bank bank = context.mock(Bank.class);
-        final Customer customer = context.mock(Customer.class);
-        System.out.println("Hej1");
+        final Bank bank2 = context.mock(Bank.class,"bank 2");
+       // final Customer customer = context.mock(Customer.class);
+        
+        final String cName = "Andreas";
+        final String cName2 = "Andreas2";
+        final String cCpr = "123456789";
+        final String cCpr2 = "1234567892";
+        
+
+        Customer c = new CustomerFake(cCpr, cName, bank);
+        Customer c2 = new CustomerFake(cCpr2, cName2, bank2);
         
         
         final String targetNumber = "TGT54321";
-        Account source = new AccountFake(bank, customer, "SRC54321");
-        Account target = new AccountFake(bank, customer, targetNumber);
-        
+        Account source = new AccountFake(bank, c, "SRC54321");
+        Account target = new AccountFake(bank, c2, targetNumber);
+                     
         context.checking(new Expectations() {
             {
-                oneOf(customer).transfer(10000, source, target);
+                //oneOf(customer).transfer(10000, source, target);
+                atLeast(1).of(bank).getAccount(source.getNumber()); 
+                will(returnValue(source));
+             
                 
-                oneOf(bank).getAccount(targetNumber);
-                will(returnValue(target));
-//                
+               //atLeast(1).of(bank2).getAccount(target.getNumber());
+              //  will(returnValue(target));
+                
                 oneOf(account).transfer(10000, target);
-                will(returnValue(target));
-              
-                
             }
         });
-        customer.transfer(10000, source, target);
+        c.transfer(10000, source, target);
         
         assertEquals(-10000, source.getBalance());
         assertEquals(10000, target.getBalance());
