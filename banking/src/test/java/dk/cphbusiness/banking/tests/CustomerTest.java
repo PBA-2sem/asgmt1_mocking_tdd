@@ -66,7 +66,29 @@ public class CustomerTest {
 
         assertEquals(c.getListOfWithdrawal(accNo).size(), expected);
     }
+    
+    
+    @Test
+   public void testGetListOfDepositNotFoundException() throws NotFoundException {
+        final Bank bank = context.mock(Bank.class);
 
+        final String cName = "Andreas";
+        final String cCpr = "123456789";
+        final String accNo = "1";
+        
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+        Account acc = new AccountImpl(bank, c, accNo);
+       // c.addAccount(acc);
+        
+        try {
+          int result =  c.getListOfDeposits(accNo).size();
+        } catch (NotFoundException e) {
+            assertThat(e.getMessage(), matcher);
+        }
+        
+
+        assertEquals(, expected);
+    }
     @Test
     public void testGetListOfDeposit() throws NotFoundException {
         final Bank bank = context.mock(Bank.class);

@@ -30,7 +30,8 @@ public class AccountImpl implements Account {
     }
 
     @Override
-    public void transfer(long amount, Account target) {
+    public void transfer(long amount, Account target) throws NotFoundException {
+        if (target.getNumber() == null) throw new NotFoundException("Account: " + target.getNumber() + " does not exist");
         this.withdraw(amount);
         target.deposit(amount);
     }

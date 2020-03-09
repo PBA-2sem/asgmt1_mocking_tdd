@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import exceptions.NotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +30,11 @@ public class CustomerImpl implements Customer {
 
     @Override
     public void transfer(long amount, Account account, Account targetAccount) {
-        account.transfer(amount, targetAccount);
+        try {
+            account.transfer(amount, targetAccount);
+        } catch (NotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override

@@ -37,7 +37,7 @@ public interface Account {
      * @param amount of money
      * @param target Account
      */
-    void transfer(long amount, Account target);
+    void transfer(long amount, Account target) throws NotFoundException;
 
     /**
      * This method will be used to transfer given amount of money to given
