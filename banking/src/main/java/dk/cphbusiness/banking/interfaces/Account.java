@@ -1,5 +1,6 @@
 package dk.cphbusiness.banking.interfaces;
 
+import exceptions.NotFoundException;
 import java.util.List;
 
 /**
@@ -45,8 +46,9 @@ public interface Account {
      *
      * @param amount of money
      * @param targetNumber target account number
+     * @throws exceptions.NotFoundException
      */
-    void transfer(long amount, String targetNumber);
+    void transfer(long amount, String targetNumber) throws NotFoundException;
 
     /**
      * This method will be used to get Account balance.

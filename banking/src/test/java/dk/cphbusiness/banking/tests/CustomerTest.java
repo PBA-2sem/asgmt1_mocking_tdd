@@ -8,6 +8,7 @@ package dk.cphbusiness.banking.tests;
 import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
+import exceptions.NotFoundException;
 import implementations.AccountImpl;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import implementations.CustomerImpl;
@@ -46,7 +47,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void testGetListOfWithdrawal() {
+    public void testGetListOfWithdrawal() throws NotFoundException {
         final Bank bank = context.mock(Bank.class);
 
         final String cName = "Andreas";
@@ -65,7 +66,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void testGetListOfDeposit() {
+    public void testGetListOfDeposit() throws NotFoundException {
         final Bank bank = context.mock(Bank.class);
 
         final String cName = "Andreas";
@@ -101,9 +102,7 @@ public class CustomerTest {
                 will(returnValue(accNo));
             }
         });
-
         c.addAccount(account);
-
         assertEquals(c.getAccounts().size(), 1);
     }
 

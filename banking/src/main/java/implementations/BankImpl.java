@@ -3,6 +3,7 @@ package implementations;
 import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
+import exceptions.NotFoundException;
 import java.util.Map;
 
 /**
@@ -32,8 +33,10 @@ public class BankImpl implements Bank {
     }
     
     @Override
-    public Account getAccount(String number) {
-        return accounts.get(number);
+    public Account getAccount(String number) throws NotFoundException {
+        Account account = accounts.get(number);
+        if (account == null) throw new NotFoundException("Account: " + number + " does not exist");
+        return account;
     }
     
     @Override

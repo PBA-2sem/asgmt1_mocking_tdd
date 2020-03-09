@@ -1,5 +1,6 @@
 package dk.cphbusiness.banking.interfaces;
 
+import exceptions.NotFoundException;
 import java.util.Map;
 
 /**
@@ -27,8 +28,9 @@ public interface Bank {
      *
      * @param number account number
      * @return the corresponding Account
+     * @throws exceptions.NotFoundException
      */
-    Account getAccount(String number);
+    Account getAccount(String number) throws NotFoundException;
 
     /**
      * This method will be used to get all accounts from given Customer.

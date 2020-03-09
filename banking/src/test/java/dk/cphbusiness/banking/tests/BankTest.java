@@ -3,6 +3,7 @@ package dk.cphbusiness.banking.tests;
 import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
+import exceptions.NotFoundException;
 import implementations.AccountImpl;
 import implementations.BankImpl;
 import implementations.CustomerImpl;
@@ -21,7 +22,7 @@ public class BankTest {
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
     @Test
-    public void testGetAccount() {
+    public void testGetAccount() throws NotFoundException {
         final Customer customer = context.mock(Customer.class);
 
         final String targetNumber = "TGT54321";

@@ -7,6 +7,7 @@ import dk.cphbusiness.banking.interfaces.Movement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import exceptions.NotFoundException;
 
 /**
  *
@@ -51,13 +52,17 @@ public class CustomerImpl implements Customer {
     }
 
     @Override
-    public List<Movement> getListOfWithdrawal(String accNumber) {
-        return this.accounts.get(accNumber).getWithdrawals();
+    public List<Movement> getListOfWithdrawal(String accNumber) throws NotFoundException {
+        Account account = accounts.get(accNumber);
+        if (account == null) throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        return account.getWithdrawals();
     }
 
     @Override
-    public List<Movement> getListOfDeposits(String accNumber) {
-        return this.accounts.get(accNumber).getDeposits();
+    public List<Movement> getListOfDeposits(String accNumber) throws NotFoundException {
+        Account account = accounts.get(accNumber);
+        if (account == null) throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        return account.getDeposits();
     }
 
     @Override

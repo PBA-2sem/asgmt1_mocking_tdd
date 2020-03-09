@@ -1,5 +1,6 @@
 package dk.cphbusiness.banking.interfaces;
 
+import exceptions.NotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -60,8 +61,9 @@ public interface Customer {
      *
      * @param accNumber
      * @return List of Movement
+     * @throws exceptions.NotFoundException
      */
-    List<Movement> getListOfWithdrawal(String accNumber);
+    List<Movement> getListOfWithdrawal(String accNumber) throws NotFoundException;
 
     /**
      * This method will be used to get a List of Movement, representing Account
@@ -69,6 +71,7 @@ public interface Customer {
      *
      * @param accNumber
      * @return List of Movement
+     * @throws exceptions.NotFoundException
      */
-    List<Movement> getListOfDeposits(String accNumber);
+    List<Movement> getListOfDeposits(String accNumber)  throws NotFoundException;
 }

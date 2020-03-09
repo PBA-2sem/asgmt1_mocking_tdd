@@ -3,6 +3,7 @@ package dk.cphbusiness.banking.tests;
 import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
+import exceptions.NotFoundException;
 import implementations.AccountImpl;
 import java.util.ArrayList;
 import static org.jmock.AbstractExpectations.returnValue;
@@ -33,7 +34,7 @@ public class AccountTest {
     }
 
     @Test
-    public void testAccountTransferWithNumber() {
+    public void testAccountTransferWithNumber() throws NotFoundException {
         final Customer customer = context.mock(Customer.class);
         final Bank bank = context.mock(Bank.class);
 
@@ -55,7 +56,7 @@ public class AccountTest {
     }
 
     @Test
-    public void testAccountTransferWithObject() {
+    public void testAccountTransferWithObject() throws NotFoundException {
         final Customer customer = context.mock(Customer.class);
         final Bank bank = context.mock(Bank.class);
 
