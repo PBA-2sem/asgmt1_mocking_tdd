@@ -3,6 +3,7 @@ package dk.cphbusiness.banking.tests;
 import dk.cphbusiness.banking.interfaces.Movement;
 import dk.cphbusiness.banking.files.fakes.MovementFake;
 import dk.cphbusiness.banking.files.stub.TimeStub;
+import implementations.MovementImpl;
 import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,14 +14,9 @@ import static org.junit.Assert.*;
  */
 public class MovementTest {
 
-    Movement instance;
-
-    public MovementTest() {
-        instance = new MovementFake(1000);
-    }
-
     @Test
     public void testGetTime() {
+        Movement instance = new MovementFake(1000);
         System.out.println("getTime");
         LocalDateTime expResult = TimeStub.getFixedTime();
         LocalDateTime result = instance.getTime();
@@ -29,7 +25,8 @@ public class MovementTest {
 
     @Test
     public void testGetAmount() {
-        System.out.println("testGetAmount");
+        Movement instance = new MovementImpl(1000);
+        System.out.println("getAmount");
         long expResult = 1000;
         long result = instance.getAmount();
         assertEquals(expResult, result);
