@@ -1,4 +1,4 @@
-package dk.cphbusiness.banking.files;
+package dk.cphbusiness.banking.interfaces;
 
 import java.util.List;
 
@@ -72,10 +72,17 @@ public interface Account {
     List<Movement> getDeposits();
 
     /**
-     * This method will be used to set the Account balance.
-     *
+     * This method adds the amount to the balance
+     * 
      * @param amount
      */
-    void setBalance(long amount);
+    void deposit(long amount);
+
+    /**
+     * This method reduces the amount from the balance
+     * 
+     * @param amount
+     */
+    void withdraw(long amount);
 
 }

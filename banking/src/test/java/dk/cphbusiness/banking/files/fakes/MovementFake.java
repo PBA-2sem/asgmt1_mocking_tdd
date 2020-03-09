@@ -1,6 +1,6 @@
 package dk.cphbusiness.banking.files.fakes;
 
-import dk.cphbusiness.banking.files.Movement;
+import dk.cphbusiness.banking.interfaces.Movement;
 import dk.cphbusiness.banking.files.stub.TimeStub;
 import java.time.LocalDateTime;
 

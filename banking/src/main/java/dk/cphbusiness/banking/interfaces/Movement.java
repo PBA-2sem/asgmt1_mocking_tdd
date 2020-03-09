@@ -1,4 +1,4 @@
-package dk.cphbusiness.banking.files;
+package dk.cphbusiness.banking.interfaces;
 
 import java.time.LocalDateTime;
 
