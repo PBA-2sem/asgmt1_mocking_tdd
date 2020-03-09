@@ -2,8 +2,11 @@
 
 [Assignment 1 - Mocking and TDD](assets/assignment.pdf)
 
+# Jacoco
+The project when build will produce a [Jacoco](https://www.jacoco.org/jacoco/trunk/index.html) code covarage report. It will reside in the `./banking/target/site/index.html`.
+
 # Diagram of solution
-![diagram](<assets/diagram.png>)
+![Diagram](<assets/diagram.png>)
 
 ## Author Details
 
