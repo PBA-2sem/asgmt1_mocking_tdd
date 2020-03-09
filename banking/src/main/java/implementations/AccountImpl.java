@@ -4,6 +4,7 @@ import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
 import dk.cphbusiness.banking.interfaces.Movement;
+import exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +36,9 @@ public class AccountImpl implements Account {
     }
 
     @Override
-    public void transfer(long amount, String targetNumber) {
+    public void transfer(long amount, String targetNumber) throws NotFoundException {
         Account target = bank.getAccount(targetNumber);
+        if (target == null) throw new NotFoundException("Account: " + number + " does not exist");
         transfer(amount, target);
     }
 

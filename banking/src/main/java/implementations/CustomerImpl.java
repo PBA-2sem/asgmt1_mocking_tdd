@@ -4,8 +4,10 @@ import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
 import dk.cphbusiness.banking.interfaces.Movement;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import exceptions.NotFoundException;
 
 /**
  *
@@ -16,7 +18,7 @@ public class CustomerImpl implements Customer {
     private final String cpr;
     private final String name;
     private final Bank bank;
-    
+    private final Map<String, Account> accounts = new HashMap<>();
 
     public CustomerImpl(String cpr, String name, Bank bank) {
         this.cpr = cpr;
@@ -26,8 +28,7 @@ public class CustomerImpl implements Customer {
 
     @Override
     public void transfer(long amount, Account account, Account targetAccount) {
-        Account thisAccount = bank.getAccount(account.getNumber());
-        thisAccount.transfer(amount, targetAccount);
+        account.transfer(amount, targetAccount);
     }
 
     @Override
@@ -47,16 +48,25 @@ public class CustomerImpl implements Customer {
 
     @Override
     public Map<String, Account> getAccounts() {
-        return bank.getAccounts(this);
+        return this.accounts;
     }
 
     @Override
-    public List<Movement> getListOfWithdrawal(int number) {
-        return bank.getAccount(this.name).getWithdrawals();
+    public List<Movement> getListOfWithdrawal(String accNumber) throws NotFoundException {
+        Account account = accounts.get(accNumber);
+        if (account == null) throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        return account.getWithdrawals();
     }
 
     @Override
-    public List<Movement> getListOfDeposits(int number) {
-        return bank.getAccount(this.name).getDeposits();
+    public List<Movement> getListOfDeposits(String accNumber) throws NotFoundException {
+        Account account = accounts.get(accNumber);
+        if (account == null) throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        return account.getDeposits();
+    }
+
+    @Override
+    public void addAccount(Account account) {
+        this.accounts.put(account.getNumber(), account);
     }
 }
