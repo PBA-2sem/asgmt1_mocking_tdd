@@ -1,9 +1,9 @@
-package dk.cphbusiness.banking.files.fakes;
+package implementations;
 
-import dk.cphbusiness.banking.files.Account;
-import dk.cphbusiness.banking.files.Bank;
-import dk.cphbusiness.banking.files.Customer;
-import dk.cphbusiness.banking.files.Movement;
+import dk.cphbusiness.banking.interfaces.Account;
+import dk.cphbusiness.banking.interfaces.Bank;
+import dk.cphbusiness.banking.interfaces.Customer;
+import dk.cphbusiness.banking.interfaces.Movement;
 import java.util.List;
 import java.util.Map;
 
@@ -11,14 +11,14 @@ import java.util.Map;
  *
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
-public class CustomerFake implements Customer {
+public class CustomerImpl implements Customer {
 
     private final String cpr;
     private final String name;
     private final Bank bank;
     
 
-    public CustomerFake(String cpr, String name, Bank bank) {
+    public CustomerImpl(String cpr, String name, Bank bank) {
         this.cpr = cpr;
         this.name = name;
         this.bank = bank;

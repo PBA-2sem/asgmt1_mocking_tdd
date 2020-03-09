@@ -1,9 +1,9 @@
-package dk.cphbusiness.banking.files.fakes;
+package implementations;
 
-import dk.cphbusiness.banking.files.Account;
-import dk.cphbusiness.banking.files.Bank;
-import dk.cphbusiness.banking.files.Customer;
-import dk.cphbusiness.banking.files.Movement;
+import dk.cphbusiness.banking.interfaces.Account;
+import dk.cphbusiness.banking.interfaces.Bank;
+import dk.cphbusiness.banking.interfaces.Customer;
+import dk.cphbusiness.banking.interfaces.Movement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author awha8
  */
-public class AccountFake implements Account {
+public class AccountImpl implements Account {
 
     private final Bank bank;
     private final Customer customer;
@@ -20,7 +20,7 @@ public class AccountFake implements Account {
     private final List<Movement> withdrawals;
     private final List<Movement> deposits;
 
-    public AccountFake(Bank bank, Customer customer, String number) {
+    public AccountImpl(Bank bank, Customer customer, String number) {
         this.bank = bank;
         this.customer = customer;
         this.number = number;
@@ -30,17 +30,8 @@ public class AccountFake implements Account {
 
     @Override
     public void transfer(long amount, Account target) {
-        balance -= amount;
-        target.setBalance(amount);
-
-        // create deposit movement
-        Movement movementDeposit = new MovementFake(amount);
-        target.getDeposits().add(movementDeposit);
-
-        // create withdrawal movement
-        Movement movementWithdrawal = new MovementFake(-amount);
-        withdrawals.add(movementWithdrawal);
-
+        this.withdraw(amount);
+        target.deposit(amount);
     }
 
     @Override
@@ -79,9 +70,16 @@ public class AccountFake implements Account {
     public long getBalance() {
         return balance;
     }
-    
+
     @Override
-    public void setBalance(long amount){
-        this.balance = amount;
+    public void deposit(long amount) {
+        this.deposits.add(new MovementImpl(amount));
+        balance += amount;
+    }
+
+    @Override
+    public void withdraw(long amount) {
+        this.withdrawals.add(new MovementImpl(-amount));
+        balance += -amount;
     }
 }

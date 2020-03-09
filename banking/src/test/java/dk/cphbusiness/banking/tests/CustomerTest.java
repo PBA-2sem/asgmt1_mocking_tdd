@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.cphbusiness.banking.files;
+package dk.cphbusiness.banking.tests;
 
-import dk.cphbusiness.banking.files.fakes.AccountFake;
+import dk.cphbusiness.banking.interfaces.Account;
+import dk.cphbusiness.banking.interfaces.Bank;
+import dk.cphbusiness.banking.interfaces.Customer;
+import implementations.AccountImpl;
 import org.jmock.integration.junit4.JUnitRuleMockery;
-import dk.cphbusiness.banking.files.fakes.CustomerFake;
+import implementations.CustomerImpl;
 import static org.jmock.AbstractExpectations.returnValue;
 import org.jmock.Expectations;
 import static org.junit.Assert.assertEquals;
@@ -19,7 +22,7 @@ import org.junit.Test;
  *
  * @author Andreas
  */
-public class CustomerMockingTest {
+public class CustomerTest {
 
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -30,7 +33,7 @@ public class CustomerMockingTest {
         final String cName = "Andreas";
         final String cCpr = "123456789";
 
-        Customer customer = new CustomerFake(cCpr, cName, bank);
+        Customer customer = new CustomerImpl(cCpr, cName, bank);
 //            context.checking(new Expectations() {
 //            {
 //               //oneOf(customer).getName();
@@ -49,11 +52,11 @@ public class CustomerMockingTest {
         final String cName = "Andreas";
         final String cCpr = "123456789";
         
-        Customer c = new CustomerFake(cCpr, cName, bank);
+        Customer c = new CustomerImpl(cCpr, cName, bank);
                
         final String targetNumber = "TGT54321";
-        Account source = new AccountFake(bank, c, "SRC54321");
-        Account target = new AccountFake(bank, c, targetNumber);
+        Account source = new AccountImpl(bank, c, "SRC54321");
+        Account target = new AccountImpl(bank, c, targetNumber);
                      
         context.checking(new Expectations() {
             {

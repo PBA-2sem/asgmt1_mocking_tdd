@@ -1,6 +1,9 @@
-package dk.cphbusiness.banking.files;
+package dk.cphbusiness.banking.tests;
 
-import dk.cphbusiness.banking.files.fakes.AccountFake;
+import dk.cphbusiness.banking.interfaces.Account;
+import dk.cphbusiness.banking.interfaces.Bank;
+import dk.cphbusiness.banking.interfaces.Customer;
+import implementations.AccountImpl;
 import java.util.HashMap;
 import java.util.Map;
 import static org.jmock.AbstractExpectations.returnValue;
@@ -10,16 +13,16 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Rule;
 import org.junit.Test;
 
-public class BankMockingTest {
+public class BankTest {
 
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    @Test
+@Test
     public void testGetAccount() {
         final Customer customer = context.mock(Customer.class);
         final Bank bank = context.mock(Bank.class);
-        Account account = new AccountFake(bank, customer, "SRC54321");
+        Account account = new AccountImpl(bank, customer, "SRC54321");
         final String targetNumber = "TGT54321";
         context.checking(new Expectations() {
             {

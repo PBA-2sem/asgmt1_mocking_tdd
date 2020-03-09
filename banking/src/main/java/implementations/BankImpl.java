@@ -1,21 +1,21 @@
-package dk.cphbusiness.banking.files.fakes;
+package implementations;
 
-import dk.cphbusiness.banking.files.Account;
-import dk.cphbusiness.banking.files.Bank;
-import dk.cphbusiness.banking.files.Customer;
+import dk.cphbusiness.banking.interfaces.Account;
+import dk.cphbusiness.banking.interfaces.Bank;
+import dk.cphbusiness.banking.interfaces.Customer;
 import java.util.Map;
 
 /**
  *
  * @author awha8
  */
-    public class BankFake implements Bank {
+    public class BankImpl implements Bank {
 
         private final String cvr;
         private final String name;
         private final Map<String, Account> accounts;
 
-        public BankFake(String cvr, String name, Map<String, Account> accounts) {
+        public BankImpl(String cvr, String name, Map<String, Account> accounts) {
             this.cvr = cvr;
             this.name = name;
             this.accounts = accounts;
