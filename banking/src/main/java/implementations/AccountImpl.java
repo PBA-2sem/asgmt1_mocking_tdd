@@ -31,7 +31,10 @@ public class AccountImpl implements Account {
 
     @Override
     public void transfer(long amount, Account target) throws NotFoundException {
-        if (target.getNumber() == null) throw new NotFoundException("Account: " + target.getNumber() + " does not exist");
+        if (target == null) {
+            throw new NotFoundException("Account: does not exist!");
+        }
+
         this.withdraw(amount);
         target.deposit(amount);
     }
@@ -39,7 +42,9 @@ public class AccountImpl implements Account {
     @Override
     public void transfer(long amount, String targetNumber) throws NotFoundException {
         Account target = bank.getAccount(targetNumber);
-        if (target == null) throw new NotFoundException("Account: " + number + " does not exist");
+        if (target == null) {
+            throw new NotFoundException("Account: " + targetNumber + " does not exist");
+        }
         transfer(amount, target);
     }
 

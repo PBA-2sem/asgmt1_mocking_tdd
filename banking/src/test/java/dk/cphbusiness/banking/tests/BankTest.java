@@ -8,8 +8,6 @@ import implementations.AccountImpl;
 import implementations.BankImpl;
 import implementations.CustomerImpl;
 import java.util.HashMap;
-import java.util.Map;
-import static org.jmock.AbstractExpectations.returnValue;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.junit.Assert.assertEquals;
@@ -20,6 +18,18 @@ public class BankTest {
 
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
+
+    @Test(expected = NotFoundException.class)
+    public void testGetAccountNotFoundException() throws NotFoundException {
+        System.out.println("testGetAccountNotFoundException");
+
+        final String targetNumber = "TGT54321";
+        final String cvr = "23456789";
+        final String name = "BankBank";
+        final Bank bank = new BankImpl(cvr, name, new HashMap<>());
+
+        bank.getAccount(targetNumber);
+    }
 
     @Test
     public void testGetAccount() throws NotFoundException {

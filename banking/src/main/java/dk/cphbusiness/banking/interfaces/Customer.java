@@ -18,7 +18,7 @@ public interface Customer {
      * @param account
      * @param targetAccount
      */
-    void transfer(long amount, Account account, Account targetAccount);
+    void transfer(long amount, Account account, Account targetAccount) throws NotFoundException;
 
     /**
      * This methods will be used to get cpr of Customer.
@@ -73,5 +73,5 @@ public interface Customer {
      * @return List of Movement
      * @throws exceptions.NotFoundException
      */
-    List<Movement> getListOfDeposits(String accNumber)  throws NotFoundException;
+    List<Movement> getListOfDeposits(String accNumber) throws NotFoundException;
 }

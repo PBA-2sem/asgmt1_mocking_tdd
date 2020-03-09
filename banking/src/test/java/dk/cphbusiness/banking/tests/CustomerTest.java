@@ -16,6 +16,7 @@ import org.jmock.Expectations;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
  *
@@ -26,10 +27,25 @@ public class CustomerTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    
-    
+    @Test(expected = NotFoundException.class)
+    public void testCustomerTransferNotFoundException() throws NotFoundException {
+        System.out.println("testCustomerTransferNotFoundException");
+        final Bank bank = context.mock(Bank.class);
+
+        final String cName = "Andreas";
+        final String cCpr = "123456789";
+
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+
+        Account source = new AccountImpl(bank, c, "SRC54321");
+
+        c.transfer(10000, source, null);
+
+    }
+
     @Test
-    public void testCustomerTransfer() {
+    public void testCustomerTransfer() throws NotFoundException {
+        System.out.println("testCustomerTransfer");
         final Bank bank = context.mock(Bank.class);
 
         final String cName = "Andreas";
@@ -48,8 +64,23 @@ public class CustomerTest {
 
     }
 
+    @Test(expected = NotFoundException.class)
+    public void testGetListOfWithdrawalNotFoundException() throws NotFoundException {
+        System.out.println("testGetListOfWithdrawalNotFoundException");
+        final Bank bank = context.mock(Bank.class);
+
+        final String cName = "Andreas";
+        final String cCpr = "123456789";
+        final String accNo = "1";
+
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+
+        c.getListOfWithdrawal(accNo);
+    }
+
     @Test
     public void testGetListOfWithdrawal() throws NotFoundException {
+        System.out.println("testGetListOfWithdrawal");
         final Bank bank = context.mock(Bank.class);
 
         final String cName = "Andreas";
@@ -66,31 +97,24 @@ public class CustomerTest {
 
         assertEquals(c.getListOfWithdrawal(accNo).size(), expected);
     }
-    
-    
-    @Test
-   public void testGetListOfDepositNotFoundException() throws NotFoundException {
+
+    @Test(expected = NotFoundException.class)
+    public void testGetListOfDepositNotFoundException() throws NotFoundException {
+        System.out.println("testGetListOfDepositNotFoundException");
         final Bank bank = context.mock(Bank.class);
 
         final String cName = "Andreas";
         final String cCpr = "123456789";
         final String accNo = "1";
-        
-        Customer c = new CustomerImpl(cCpr, cName, bank);
-        Account acc = new AccountImpl(bank, c, accNo);
-       // c.addAccount(acc);
-        
-        try {
-          int result =  c.getListOfDeposits(accNo).size();
-        } catch (NotFoundException e) {
-            assertThat(e.getMessage(), matcher);
-        }
-        
 
-        assertEquals(, expected);
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+
+        c.getListOfDeposits(accNo);
     }
+
     @Test
     public void testGetListOfDeposit() throws NotFoundException {
+        System.out.println("testGetListOfDeposit");
         final Bank bank = context.mock(Bank.class);
 
         final String cName = "Andreas";
@@ -110,6 +134,7 @@ public class CustomerTest {
 
     @Test
     public void testAddAccount() {
+        System.out.println("testAddAccount");
         final Bank bank = context.mock(Bank.class);
 
         final String accNo = "1";

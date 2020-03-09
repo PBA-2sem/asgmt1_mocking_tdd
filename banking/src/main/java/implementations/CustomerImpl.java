@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import exceptions.NotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,12 +27,8 @@ public class CustomerImpl implements Customer {
     }
 
     @Override
-    public void transfer(long amount, Account account, Account targetAccount) {
-        try {
-            account.transfer(amount, targetAccount);
-        } catch (NotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void transfer(long amount, Account account, Account targetAccount) throws NotFoundException {
+        account.transfer(amount, targetAccount);
     }
 
     @Override
@@ -60,14 +54,18 @@ public class CustomerImpl implements Customer {
     @Override
     public List<Movement> getListOfWithdrawal(String accNumber) throws NotFoundException {
         Account account = accounts.get(accNumber);
-        if (account == null) throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        if (account == null) {
+            throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        }
         return account.getWithdrawals();
     }
 
     @Override
     public List<Movement> getListOfDeposits(String accNumber) throws NotFoundException {
         Account account = accounts.get(accNumber);
-        if (account == null) throw new NotFoundException("Customer: " + this.cpr + " does not have account: " + accNumber);
+        if (account == null) {
+            throw new NotFoundException("Customer: " + this.cpr + "<- very GDPR :) does not have account: " + accNumber);
+        }
         return account.getDeposits();
     }
 

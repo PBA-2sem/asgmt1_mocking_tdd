@@ -6,7 +6,6 @@ import dk.cphbusiness.banking.interfaces.Customer;
 import exceptions.NotFoundException;
 import implementations.AccountImpl;
 import java.util.ArrayList;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.jmock.AbstractExpectations.returnValue;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -19,50 +18,13 @@ public class AccountTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    @Test
-    public void testGetBank() {
+    @Test(expected = NotFoundException.class)
+    public void testAccountTransferWithNumberNotFoundException() throws NotFoundException {
+        System.out.println("testAccountTransferWithNumberNotFoundException");
         final Customer customer = context.mock(Customer.class);
         final Bank bank = context.mock(Bank.class);
-        final Account accMock = context.mock(Account.class);
-        context.checking(new Expectations() {
-            {
-
-                oneOf(accMock).getBank();
-                will(returnValue(bank));
-            }
-        });
-        assertEquals(accMock.getBank(), bank);
-    }
-    
-    @Test
-    public void testAccountTransferWithObjectNotFoundException() throws NotFoundException {
-        System.out.println("testAccountTransferWithObjectNotFoundException");
-        final Customer customer = context.mock(Customer.class);
-        final Bank bank = context.mock(Bank.class);
-        Account source = new AccountImpl(bank, customer, "SRC54321");
-        Account target = new AccountImpl(bank, customer, null);
-        context.checking(new Expectations() {
-            {
-                never(bank).getAccount(target.getNumber());
-                will(throwException(new NotFoundException("")));
-            }
-        });
-        try {
-        source.transfer(1000, target);
-        } catch (NotFoundException e) {
-            System.out.println("Hej");
-            assertThat(e.getMessage(), containsString("Account: " + null + " does not exist"));
-        }
-
-    }
-    
-    @Test 
-    public void testAccountTransferWithNumberNotFoundException() throws NotFoundException{
-    System.out.println("testAccountTransferWithNumberNotFoundException");
-    final Customer customer = context.mock(Customer.class);
-    final Bank bank = context.mock(Bank.class);
-    final String targetNumber = "TGT54321";
-    final long amount = 10000;
+        final String targetNumber = "TGT54321";
+        final long amount = 10000;
         Account source = new AccountImpl(bank, customer, "SRC54321");
         context.checking(new Expectations() {
             {
@@ -70,11 +32,8 @@ public class AccountTest {
                 will(throwException(new NotFoundException("whatever")));
             }
         });
-        try {
+
         source.transfer(amount, "TGT54321");
-        } catch (NotFoundException e) {
-            assertThat(e.getMessage(), containsString("whatever"));
-        }
     }
 
     @Test
