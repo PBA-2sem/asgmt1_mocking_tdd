@@ -48,13 +48,20 @@ public interface Customer {
     Map<String, Account> getAccounts();
 
     /**
+     * This method adds account to map
+     *
+     * @param account account to add
+     */
+    void addAccount(Account account);
+
+    /**
      * This method will be used to get a List of Movement, representing Account
      * withdrawals, by given account number.
      *
      * @param accNumber
      * @return List of Movement
      */
-    List<Movement> getListOfWithdrawal(int accNumber);
+    List<Movement> getListOfWithdrawal(String accNumber);
 
     /**
      * This method will be used to get a List of Movement, representing Account
@@ -63,5 +70,5 @@ public interface Customer {
      * @param accNumber
      * @return List of Movement
      */
-    List<Movement> getListOfDeposits(int accNumber);
+    List<Movement> getListOfDeposits(String accNumber);
 }

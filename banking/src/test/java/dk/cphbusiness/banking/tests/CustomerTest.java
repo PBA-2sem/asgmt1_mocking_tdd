@@ -11,10 +11,8 @@ import dk.cphbusiness.banking.interfaces.Customer;
 import implementations.AccountImpl;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import implementations.CustomerImpl;
-import static org.jmock.AbstractExpectations.returnValue;
 import org.jmock.Expectations;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
+import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -28,49 +26,85 @@ public class CustomerTest {
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
     @Test
-    public void testCustomerGetName() {
+    public void testCustomerTransfer() {
         final Bank bank = context.mock(Bank.class);
+
         final String cName = "Andreas";
         final String cCpr = "123456789";
 
-        Customer customer = new CustomerImpl(cCpr, cName, bank);
-//            context.checking(new Expectations() {
-//            {
-//               //oneOf(customer).getName();
-//               // will(returnValue(customer.getName()));
-//            }
-//        });
-        assertEquals(cCpr, customer.getCpr());
-        assertEquals(cName, customer.getName());
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+
+        final String targetNumber = "TGT54321";
+        Account source = new AccountImpl(bank, c, "SRC54321");
+        Account target = new AccountImpl(bank, c, targetNumber);
+
+        c.transfer(10000, source, target);
+
+        assertEquals(-10000, source.getBalance());
+        assertEquals(10000, target.getBalance());
 
     }
 
     @Test
-    public void testCustomerTransfer() {
+    public void testGetListOfWithdrawal() {
         final Bank bank = context.mock(Bank.class);
-        
+
         final String cName = "Andreas";
         final String cCpr = "123456789";
-        
+        final String accNo = "1";
+        final int expected = 2;
+
         Customer c = new CustomerImpl(cCpr, cName, bank);
-               
-        final String targetNumber = "TGT54321";
-        Account source = new AccountImpl(bank, c, "SRC54321");
-        Account target = new AccountImpl(bank, c, targetNumber);
-                     
+        Account acc = new AccountImpl(bank, c, accNo);
+
+        acc.withdraw(100);
+        acc.withdraw(100);
+        c.addAccount(acc);
+
+        assertEquals(c.getListOfWithdrawal(accNo).size(), expected);
+    }
+
+    @Test
+    public void testGetListOfDeposit() {
+        final Bank bank = context.mock(Bank.class);
+
+        final String cName = "Andreas";
+        final String cCpr = "123456789";
+        final String accNo = "1";
+        final int expected = 2;
+
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+        Account acc = new AccountImpl(bank, c, accNo);
+
+        acc.deposit(100);
+        acc.deposit(100);
+        c.addAccount(acc);
+
+        assertEquals(c.getListOfDeposits(accNo).size(), expected);
+    }
+
+    @Test
+    public void testAddAccount() {
+        final Bank bank = context.mock(Bank.class);
+
+        final String accNo = "1";
+        final Account account = context.mock(Account.class);
+
+        final String cName = "Andreas";
+        final String cCpr = "123456789";
+
+        Customer c = new CustomerImpl(cCpr, cName, bank);
+
         context.checking(new Expectations() {
             {
-                atLeast(1).of(bank).getAccount(source.getNumber()); 
-                will(returnValue(source));
-                
-              //  oneOf(account).transfer(10000, target);
+                oneOf(account).getNumber();
+                will(returnValue(accNo));
             }
         });
-        c.transfer(10000, source, target);
-        
-        assertEquals(-10000, source.getBalance());
-        assertEquals(10000, target.getBalance());
-        
+
+        c.addAccount(account);
+
+        assertEquals(c.getAccounts().size(), 1);
     }
 
 }
