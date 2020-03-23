@@ -1,3 +1,5 @@
+package com.teamwingitt.banking.contract;
+
 
 import com.teamwingitt.banking.contract.IAccountManager;
 import com.teamwingitt.banking.contract.IBankManager;
