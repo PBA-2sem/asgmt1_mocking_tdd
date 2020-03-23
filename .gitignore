@@ -54,3 +54,4 @@ nbdist/
 .DS_Store
 
 # End of https://www.gitignore.io/api/java,maven,netbeans
+/banking-contract/nbproject/

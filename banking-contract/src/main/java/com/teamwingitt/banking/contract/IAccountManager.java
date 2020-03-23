@@ -1,6 +1,8 @@
 package com.teamwingitt.banking.contract;
 
-import java.util.List;
+import DTOs.AccountDetails;
+import DTOs.MovementDetails;
+import DTOs.identifiers.AccountIdentifier;
 
 import exceptions.NotFoundException;
 import java.util.List;
@@ -12,34 +14,22 @@ import java.util.List;
 public interface IAccountManager {
 
     /**
-     * This method will be used to get the Bank of the Account.
+     * This method returns account details based on id
      *
-     * @return the Bank of the Account.
+     * @param id
+     * @return AccountDetails
      */
-    IBankManager getBank();
-
-    /**
-     * This method will be used to get the Customer of the Account.
-     *
-     * @return the Customer of the Account.
-     */
-    ICustomerManager getCustomer();
-
-    /**
-     * This method will be used to get the Account number.
-     *
-     * @return the Account number.
-     */
-    String getNumber();
+    AccountDetails getAccount(AccountIdentifier id) throws NotFoundException;
 
     /**
      * This method will be used to transfer given amount of money to given
      * Account.
      *
      * @param amount of money
-     * @param target Account
+     * @param source target account number
+     * @param target Account id
      */
-    void transfer(long amount, IAccountManager target) throws NotFoundException;
+    void transfer(long amount, AccountIdentifier source, AccountIdentifier target) throws NotFoundException;
 
     /**
      * This method will be used to transfer given amount of money to given
@@ -47,46 +37,54 @@ public interface IAccountManager {
      * Account target)
      *
      * @param amount of money
-     * @param targetNumber target account number
+     * @param sourceAccNumber target account number
+     * @param targetAccNumber target account number
      * @throws exceptions.NotFoundException
      */
-    void transfer(long amount, String targetNumber) throws NotFoundException;
+    void transfer(long amount, String sourceAccNumber, String targetAccNumber) throws NotFoundException;
 
     /**
      * This method will be used to get Account balance.
      *
      * @return amount of money
+     * @param id account id
      */
-    long getBalance();
+    long getBalance(AccountIdentifier id);
 
     /**
      * This method will be used to get a List of Movement, representing Account
      * withdrawals.
      *
-     * @return List of Movement
+     * @param id account id
+     * @return List of MovementDetails
      */
-    List<IMovementManager> getWithdrawals();
+    List<MovementDetails> getWithdrawals(AccountIdentifier id);
 
     /**
      * This method will be used to get a List of Movement, representing Account
      * deposits.
      *
-     * @return List of Movement
+     * @param id account id
+     * @return List of MovementDetails
      */
-    List<IMovementManager> getDeposits();
+    List<MovementDetails> getDeposits(AccountIdentifier id);
 
     /**
      * This method adds the amount to the balance
      *
+     * @param id account id
      * @param amount
+     * @return MovementDetails
      */
-    void deposit(long amount);
+    MovementDetails deposit(long amount, AccountIdentifier id);
 
     /**
      * This method reduces the amount from the balance
      *
+     * @param id account id
      * @param amount
+     * @return MovementDetails
      */
-    void withdraw(long amount);
+    MovementDetails withdraw(long amount, AccountIdentifier id);
 
 }

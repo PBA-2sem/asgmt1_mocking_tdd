@@ -1,5 +1,9 @@
 package com.teamwingitt.banking.contract;
 
+import DTOs.AccountDetails;
+import DTOs.BankDetails;
+import DTOs.identifiers.BankIdentifier;
+import DTOs.identifiers.CustomerIdentifier;
 import exceptions.NotFoundException;
 import java.util.Map;
 
@@ -10,40 +14,27 @@ import java.util.Map;
 public interface IBankManager {
 
     /**
-     * This method will be used to get the Bank cvr.
+     * Returns bank by id
      *
-     * @return the Bank cvr
+     * @param id
+     * @return BankDetails
+     * @throws NotFoundException
      */
-    String getCvr();
+    BankDetails getBank(BankIdentifier id) throws NotFoundException;
 
     /**
-     * This method will be used to get the Bank name.
+     * This method will be used to get all accounts from given Customer id.
      *
-     * @return the Bank name.
+     * @param id the given Customer id
+     * @return the Map<String,AccountDetails> of corresponding accounts
      */
-    String getName();
-
-    /**
-     * This method will be used to get Bank account by account number.
-     *
-     * @param number account number
-     * @return the corresponding Account
-     * @throws exceptions.NotFoundException
-     */
-    IAccountManager getAccount(String number) throws NotFoundException;
-
-    /**
-     * This method will be used to get all accounts from given Customer.
-     *
-     * @param customer the given Customer
-     * @return the Map<String,Account> of corresponding accounts
-     */
-    Map<String, IAccountManager> getAccounts(ICustomerManager customer);
+    Map<String, AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException;
 
     /**
      * This method will be used to add an Account.
      *
      * @param account the given Account
+     * @return AccountDetails with right id
      */
-    void addAccount(IAccountManager account);
+    AccountDetails addAccount(AccountDetails account);
 }
