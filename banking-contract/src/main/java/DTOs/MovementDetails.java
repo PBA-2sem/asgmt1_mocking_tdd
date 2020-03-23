@@ -3,8 +3,9 @@ package DTOs;
 import DTOs.identifiers.MovementIdentifier;
 
 /**
+ * DTO object
  *
- * @author stanislavnovitski
+ * @param <T>
  */
 public abstract class MovementDetails<T> extends MovementIdentifier implements JSONDTO<T> {
 
