@@ -6,9 +6,8 @@ import java.util.List;
 /**
  * DTO object
  *
- * @param <T>
  */
-public abstract class AccountDetails<T> extends AccountIdentifier implements JSONDTO<T> {
+public class AccountDetails extends AccountIdentifier {
 
     private String bank;
     private String customer;
@@ -16,10 +15,6 @@ public abstract class AccountDetails<T> extends AccountIdentifier implements JSO
     private long balance;
     private List<MovementDetails> withdrawals;
     private List<MovementDetails> deposits;
-
-    public AccountDetails(String id) {
-        super(id);
-    }
 
     public AccountDetails(String bank, String customer, String number, long balance, List<MovementDetails> withdrawals, List<MovementDetails> deposits, String id) {
         super(id);
@@ -54,6 +49,5 @@ public abstract class AccountDetails<T> extends AccountIdentifier implements JSO
     public List<MovementDetails> getDeposits() {
         return deposits;
     }
-    
-    
+
 }

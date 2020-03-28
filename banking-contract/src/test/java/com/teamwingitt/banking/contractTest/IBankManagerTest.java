@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.teamwingitt.banking.contract;
+package com.teamwingitt.banking.contractTest;
 
 import DTOs.AccountDetails;
 import DTOs.BankDetails;
 import DTOs.identifiers.BankIdentifier;
 import DTOs.identifiers.CustomerIdentifier;
+import com.teamwingitt.banking.contract.IBankManager;
 import exceptions.NotFoundException;
 import java.util.Map;
 import org.junit.Test;

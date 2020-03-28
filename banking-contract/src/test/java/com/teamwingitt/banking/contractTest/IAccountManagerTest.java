@@ -1,8 +1,9 @@
-package com.teamwingitt.banking.contract;
+package com.teamwingitt.banking.contractTest;
 
 import DTOs.AccountDetails;
 import DTOs.MovementDetails;
 import DTOs.identifiers.AccountIdentifier;
+import com.teamwingitt.banking.contract.IAccountManager;
 import exceptions.NotFoundException;
 import java.util.List;
 import org.junit.Test;
@@ -29,8 +30,9 @@ public class IAccountManagerTest {
         String customerName = "dummyName";
 
         AccountDetails result = manager.getAccount(id);
-        
+
         assertNotNull(result);
+        assertEquals(result, AccountDetails.class);
         assertEquals(name, result.getBank());
         assertEquals(customerName, result.getCustomer());
     }
