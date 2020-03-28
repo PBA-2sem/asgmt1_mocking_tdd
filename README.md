@@ -5,7 +5,7 @@ Assignment 1 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd)
 
 ## Description
 
-This branch of the repository contains the solution to **Assignment 2 - Integration Tests**.
+This branch of the repository contains the solution to **Assignment 2 - Integration Tests** [Link](https://datsoftlyngby.github.io/soft2020spring/resources/2b1e95b8-02-assignment-integration.pdf).
 
 This repository contains a **banking-contract** project, as well as the main **banking** project. 
 
