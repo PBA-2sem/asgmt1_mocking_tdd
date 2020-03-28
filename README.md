@@ -41,6 +41,7 @@ In the ContractManagerTest class, a JUnit test suite is specified to allow for a
 By using the @BeforeClass anotation, predefined XManagerDummy class files are "injected" into the ManagerHolder class, thereby supplying valid test data to the various tests described in the banking-contract, allowing them to run on "real" data. 
 
 The result of the contract tests:
+
 ![Tests](assets/test_results_asgmt2.PNG)
 
 
