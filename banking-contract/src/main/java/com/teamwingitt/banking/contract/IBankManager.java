@@ -5,6 +5,7 @@ import DTOs.BankDetails;
 import DTOs.identifiers.BankIdentifier;
 import DTOs.identifiers.CustomerIdentifier;
 import exceptions.NotFoundException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,7 +29,7 @@ public interface IBankManager {
      * @param id the given Customer id
      * @return the Map<String,AccountDetails> of corresponding accounts
      */
-    Map<String, AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException;
+    List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException;
 
     /**
      * This method will be used to add an Account.

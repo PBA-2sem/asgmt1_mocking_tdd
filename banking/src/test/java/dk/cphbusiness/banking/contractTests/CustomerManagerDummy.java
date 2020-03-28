@@ -27,7 +27,7 @@ public class CustomerManagerDummy implements ICustomerManager {
      Map<String, CustomerDetails> dummyCustomers = new HashMap<>();
      
        
-         List<AccountDetails> accounts = new ArrayList<>();
+     List<AccountDetails> accounts = new ArrayList<>();
      
      public CustomerManagerDummy(){
          
