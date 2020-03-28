@@ -23,12 +23,16 @@ public class IAccountManagerTest {
     public void testGetAccount() throws Exception {
 
         System.out.println("getAccount");
-        AccountIdentifier id = null;
-        AccountDetails expResult = null;
+        AccountIdentifier id = new AccountIdentifier("1");
+
+        String name = "dummyBankName";
+        String customerName = "dummyName";
+
         AccountDetails result = manager.getAccount(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertNotNull(result);
+        assertEquals(name, result.getBank());
+        assertEquals(customerName, result.getCustomer());
     }
 
     /**

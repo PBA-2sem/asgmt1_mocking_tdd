@@ -21,4 +21,39 @@ public abstract class AccountDetails<T> extends AccountIdentifier implements JSO
         super(id);
     }
 
+    public AccountDetails(String bank, String customer, String number, long balance, List<MovementDetails> withdrawals, List<MovementDetails> deposits, String id) {
+        super(id);
+        this.bank = bank;
+        this.customer = customer;
+        this.number = number;
+        this.balance = balance;
+        this.withdrawals = withdrawals;
+        this.deposits = deposits;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public List<MovementDetails> getWithdrawals() {
+        return withdrawals;
+    }
+
+    public List<MovementDetails> getDeposits() {
+        return deposits;
+    }
+    
+    
 }
