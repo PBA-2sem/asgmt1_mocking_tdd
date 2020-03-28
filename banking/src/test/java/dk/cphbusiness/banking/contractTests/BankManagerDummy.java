@@ -48,10 +48,6 @@ public class BankManagerDummy implements IBankManager{
         return this.accounts;
     }
 
-    @Override
-    public AccountDetails addAccount(AccountDetails account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
   
     

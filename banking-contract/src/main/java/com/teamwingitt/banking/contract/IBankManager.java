@@ -31,11 +31,4 @@ public interface IBankManager {
      */
     List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException;
 
-    /**
-     * This method will be used to add an Account.
-     *
-     * @param account the given Account
-     * @return AccountDetails with right id
-     */
-    AccountDetails addAccount(AccountDetails account);
 }

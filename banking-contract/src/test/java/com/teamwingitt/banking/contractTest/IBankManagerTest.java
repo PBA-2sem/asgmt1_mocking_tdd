@@ -66,18 +66,5 @@ public class IBankManagerTest {
        
     }
 
-    /**
-     * Test of addAccount method, of class IBankManager.
-     */
-    @Test
-    public void testAddAccount() {
-        System.out.println("addAccount");
-        AccountDetails account = null;
-        AccountDetails expResult = null;
-        AccountDetails result = manager.addAccount(account);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
 }
