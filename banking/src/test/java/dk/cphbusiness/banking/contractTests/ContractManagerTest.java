@@ -5,8 +5,10 @@ import org.junit.runners.Suite;
 import com.teamwingitt.banking.contractTest.IAccountManagerTest;
 
 @RunWith (Suite.class)
-@Suite.SuiteClasses({})
+@Suite.SuiteClasses({IAccountManagerTest.class})
 
 public class ContractManagerTest {
  
+    
+    
 }
