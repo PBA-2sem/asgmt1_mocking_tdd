@@ -1,8 +1,10 @@
 package com.teamwingitt.banking.contract;
 
+import DTOs.AccountDetails;
 import DTOs.CustomerDetails;
 import DTOs.identifiers.CustomerIdentifier;
 import exceptions.NotFoundException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +29,7 @@ public interface ICustomerManager {
      * @return Map of account numbers & accounts
      * @throws NotFoundException
      */
-    Map<String, IAccountManager> getAccounts(CustomerIdentifier id) throws NotFoundException;
+    List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException;
+    
 
 }
