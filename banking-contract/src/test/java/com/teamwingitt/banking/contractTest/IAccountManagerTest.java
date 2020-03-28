@@ -26,15 +26,15 @@ public class IAccountManagerTest {
         System.out.println("getAccount");
         AccountIdentifier id = new AccountIdentifier("1");
 
-        String name = "dummyBankName";
-        String customerName = "dummyName";
+        String expectedName = "DanskeBank";
+        String expectedCustomerName = "Stanislav";
 
         AccountDetails result = manager.getAccount(id);
 
         assertNotNull(result);
-        assertEquals(result, AccountDetails.class);
-        assertEquals(name, result.getBank());
-        assertEquals(customerName, result.getCustomer());
+        assertEquals(result.getClass(), AccountDetails.class);
+        assertEquals(expectedName, result.getBank());
+        assertEquals(expectedCustomerName, result.getCustomer());
     }
 
     /**

@@ -14,38 +14,37 @@ public class AccountManagerDummy implements IAccountManager {
 
     Map<String, AccountDetails> dummyAccounts = new HashMap<>();
 
-    List<MovementDetails> dummyWithdrawals = new ArrayList<MovementDetails>() {
-        {
-            add(new MovementDetails("1", -1, "1"));
-            add(new MovementDetails("2", -2, "2"));
-            add(new MovementDetails("3", -3, "3"));
-        }
-    };
-
-    List<MovementDetails> dummyDeposits = new ArrayList<MovementDetails>() {
-        {
-            add(new MovementDetails("4", 4, "4"));
-            add(new MovementDetails("5", 5, "5"));
-            add(new MovementDetails("6", 6, "6"));
-        }
-    };
-
-    AccountDetails stanislav = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337, dummyWithdrawals, dummyDeposits, "1");
-    
-
     public AccountManagerDummy() {
+        AccountDetails stanislav = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337,
+                new ArrayList<MovementDetails>() {
+            {
+                add(new MovementDetails("1", -1, "1"));
+                add(new MovementDetails("2", -2, "2"));
+            }
+        },
+                new ArrayList<MovementDetails>() {
+            {
+                add(new MovementDetails("1", -1, "1"));
+                add(new MovementDetails("2", -2, "2"));
+            }
+        },
+                 "1");
+
+        AccountDetails andreas = new AccountDetails("Nordea", "Andreas", "1122", 8888, new ArrayList<>(), new ArrayList<>(), "2");
 
         dummyAccounts.put("1", stanislav);
+        dummyAccounts.put("2", andreas);
+        
     }
 
     @Override
     public AccountDetails getAccount(AccountIdentifier id) throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dummyAccounts.get(id.getId());
     }
 
     @Override
     public void transfer(long amount, AccountIdentifier source, AccountIdentifier target) throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

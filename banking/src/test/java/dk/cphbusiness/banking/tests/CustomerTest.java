@@ -16,7 +16,6 @@ import org.jmock.Expectations;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
  *
