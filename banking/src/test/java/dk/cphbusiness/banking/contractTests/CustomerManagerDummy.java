@@ -56,12 +56,5 @@ public class CustomerManagerDummy implements ICustomerManager {
     public List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException {
         return this.accounts;
     }
-
-
-
-    
-
-  
-    
     
 }

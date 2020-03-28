@@ -8,7 +8,10 @@ import exceptions.NotFoundException;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class IAccountManagerTest {
 
     IAccountManager manager;
@@ -41,28 +44,36 @@ public class IAccountManagerTest {
      * Test of transfer method, of class IAccountManager.
      */
     @Test
-    public void testTransfer_3args_1() throws Exception {
-        System.out.println("transfer");
-        long amount = 0L;
-        AccountIdentifier source = null;
-        AccountIdentifier target = null;
-        manager.transfer(amount, source, target);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testTransferWithAccount() throws Exception {
+        System.out.println("transferWithAccount");
+        AccountIdentifier donald = new AccountIdentifier("7");
+        AccountIdentifier erdogan = new AccountIdentifier("8");
+        long amount = 100L;
+        long expectedBalanaceForDonald = 0;
+        long expectedBalanaceForErdogan = 200;
+        String sourceAccNumber = "1122"; //dumbledore
+        String targetAccNumber = "2211"; //voldemort
+        manager.transfer(amount, sourceAccNumber, targetAccNumber);
+        assertEquals(expectedBalanaceForDonald, manager.getBalance(donald));
+        assertEquals(expectedBalanaceForErdogan, manager.getBalance(erdogan));
     }
 
     /**
      * Test of transfer method, of class IAccountManager.
      */
     @Test
-    public void testTransfer_3args_2() throws Exception {
-        System.out.println("transfer");
-        long amount = 0L;
-        String sourceAccNumber = "";
-        String targetAccNumber = "";
+    public void testTransferWithAccountNumber() throws Exception {
+        System.out.println("transferWithAccountNumber");
+        AccountIdentifier donald = new AccountIdentifier("5");
+        AccountIdentifier erdogan = new AccountIdentifier("6");
+        long amount = 10L;
+        long expectedBalanaceForDonald = 0;
+        long expectedBalanaceForErdogan = 20;
+        String sourceAccNumber = "3000"; //donaldtrump
+        String targetAccNumber = "4000"; //erdogan
         manager.transfer(amount, sourceAccNumber, targetAccNumber);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expectedBalanaceForDonald, manager.getBalance(donald));
+        assertEquals(expectedBalanaceForErdogan, manager.getBalance(erdogan));
     }
 
     /**
@@ -70,13 +81,10 @@ public class IAccountManagerTest {
      */
     @Test
     public void testGetBalance() {
-        System.out.println("getBalance");
-        AccountIdentifier id = null;
-        long expResult = 0L;
-        long result = manager.getBalance(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("deposit");
+        AccountIdentifier id = new AccountIdentifier("4");
+        long expectedBalance = 1000000;
+        assertEquals(expectedBalance, manager.getBalance(id));
     }
 
     /**
@@ -85,12 +93,10 @@ public class IAccountManagerTest {
     @Test
     public void testGetWithdrawals() {
         System.out.println("getWithdrawals");
-        AccountIdentifier id = null;
-        List<MovementDetails> expResult = null;
+        AccountIdentifier id = new AccountIdentifier("2");
+        int expectedNumberOfWidthdrawals = 2;
         List<MovementDetails> result = manager.getWithdrawals(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expectedNumberOfWidthdrawals, result.size());
     }
 
     /**
@@ -99,42 +105,44 @@ public class IAccountManagerTest {
     @Test
     public void testGetDeposits() {
         System.out.println("getDeposits");
-        AccountIdentifier id = null;
-        List<MovementDetails> expResult = null;
+        AccountIdentifier id = new AccountIdentifier("2");
+        int expectedNumberOfWidthdrawals = 2;
         List<MovementDetails> result = manager.getDeposits(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expectedNumberOfWidthdrawals, result.size());
     }
 
     /**
      * Test of deposit method, of class IAccountManager.
      */
     @Test
-    public void testDeposit() {
+    public void testDeposit() throws NotFoundException {
         System.out.println("deposit");
-        long amount = 0L;
-        AccountIdentifier id = null;
-        MovementDetails expResult = null;
+        AccountIdentifier id = new AccountIdentifier("1");
+        long amount = 1000;
+        long expectedBalance = manager.getBalance(id) + amount;
+        MovementDetails expResult = new MovementDetails("20/04/2020", 1000, "5");
         MovementDetails result = manager.deposit(amount, id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        AccountDetails ad = manager.getAccount(id);
+        
+        assertEquals(expectedBalance, ad.getBalance());
+        assertEquals(result.getClass(), expResult.getClass());
     }
 
     /**
      * Test of withdraw method, of class IAccountManager.
      */
     @Test
-    public void testWithdraw() {
+    public void testWithdraw() throws NotFoundException {
         System.out.println("withdraw");
-        long amount = 0L;
-        AccountIdentifier id = null;
-        MovementDetails expResult = null;
+        AccountIdentifier id = new AccountIdentifier("1");
+        long amount = 1000;
+        long expectedBalance = manager.getBalance(id) - amount;
+        MovementDetails expResult = new MovementDetails("20/04/2020", 1000, "5");
         MovementDetails result = manager.withdraw(amount, id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        AccountDetails ad = manager.getAccount(id);
+        
+        assertEquals(expectedBalance, ad.getBalance());
+        assertEquals(result.getClass(), expResult.getClass());
     }
 
 }

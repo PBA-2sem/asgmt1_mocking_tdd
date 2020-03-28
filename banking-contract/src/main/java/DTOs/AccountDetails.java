@@ -50,4 +50,7 @@ public class AccountDetails extends AccountIdentifier {
         return deposits;
     }
 
+    public void setBalance(long amount) {
+        this.balance += amount;
+    }
 }

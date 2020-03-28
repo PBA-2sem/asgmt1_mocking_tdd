@@ -14,14 +14,11 @@ import org.junit.BeforeClass;
 
 public class ContractManagerTest {
  
-        
     @BeforeClass
     public static void beforeClass() {
         ManagerHolder.accountManager = new AccountManagerDummy();
         ManagerHolder.bankManager = new BankManagerDummy();
         ManagerHolder.customerManager = new CustomerManagerDummy();
     }
-    
-    
     
 }
