@@ -3,7 +3,6 @@ package com.teamwingitt.banking.contract;
 import DTOs.AccountDetails;
 import DTOs.MovementDetails;
 import DTOs.identifiers.AccountIdentifier;
-
 import exceptions.NotFoundException;
 import java.util.List;
 

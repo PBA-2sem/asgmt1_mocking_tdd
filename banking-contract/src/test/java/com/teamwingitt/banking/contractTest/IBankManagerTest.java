@@ -27,11 +27,12 @@ public class IBankManagerTest {
     IBankManager manager;
 
     public IBankManagerTest() {
-       manager = ManagerHolder.bankManager;
+        manager = ManagerHolder.bankManager;
     }
 
     /**
      * Test of getBank method, of class IBankManager.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -45,26 +46,21 @@ public class IBankManagerTest {
 
     /**
      * Test of getAccounts method, of class IBankManager.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testGetAccounts() throws Exception {
-       System.out.println("getAccounts - Bank");
-         
-       List<AccountDetails> accounts = new ArrayList<>();
-       AccountDetails acc = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337, null, null, "1");
-       AccountDetails acc2 = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337, null, null, "2");
-       accounts.add(acc);
-       accounts.add(acc2);
-       
-       CustomerIdentifier id = new CustomerIdentifier("1");
-       List<AccountDetails> expResult = accounts;
-       List<AccountDetails> result = manager.getAccounts(id);
-       assertEquals(expResult.get(0).getBank(), result.get(0).getBank());
-       assertEquals(expResult.size(), result.size());
-       
-       
-    }
+        System.out.println("getAccounts - Bank");
 
+        List<AccountDetails> accounts = new ArrayList<>();
+        AccountDetails acc = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337, null, null, "1");
+        accounts.add(acc);
+        CustomerIdentifier id = new CustomerIdentifier("1");
+        List<AccountDetails> expResult = accounts;
+        List<AccountDetails> result = manager.getAccounts(id);
+        assertEquals(expResult.get(0).getBank(), result.get(0).getBank());
+        assertEquals(expResult.size(), result.size());
+    }
 
 }

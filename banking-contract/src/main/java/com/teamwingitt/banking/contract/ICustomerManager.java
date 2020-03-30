@@ -5,7 +5,6 @@ import DTOs.CustomerDetails;
 import DTOs.identifiers.CustomerIdentifier;
 import exceptions.NotFoundException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This is an interface for Customer.

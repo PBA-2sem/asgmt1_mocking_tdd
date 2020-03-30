@@ -12,16 +12,21 @@ import dk.cphbusiness.banking.interfaces.Customer;
  *
  * @author Andreas
  */
-public class CustomerMapper implements Mapper<Customer, CustomerDetails>{
+public class CustomerMapper implements Mapper<Customer, CustomerDetails> {
 
     @Override
     public CustomerDetails fromInternal(Customer object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return new CustomerDetails(
+                object.getCpr(),
+                object.getName(),
+                object.getBank().getName(),
+                null);
     }
 
     @Override
     public Customer toInternal(CustomerDetails object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

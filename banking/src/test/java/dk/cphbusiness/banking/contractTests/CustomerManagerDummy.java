@@ -9,9 +9,14 @@ import DTOs.AccountDetails;
 import DTOs.CustomerDetails;
 import DTOs.identifiers.CustomerIdentifier;
 import com.teamwingitt.banking.contract.ICustomerManager;
+import dk.cphbusiness.banking.interfaces.Account;
+import dto.mappers.AccountMapper;
+import dto.mappers.CustomerMapper;
 import exceptions.NotFoundException;
+import implementations.AccountImpl;
+import implementations.BankImpl;
+import implementations.CustomerImpl;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,38 +25,41 @@ import java.util.Map;
  * @author Andreas
  */
 public class CustomerManagerDummy implements ICustomerManager {
-    
-     Map<String, CustomerDetails> dummyCustomers = new HashMap<>();
-     
-       
-     List<AccountDetails> accounts = new ArrayList<>();
-     
-     public CustomerManagerDummy(){
-         
-         CustomerDetails stanislav = new CustomerDetails("128923-1111", "Stanislav", "DanskeBank", "1");
-         CustomerDetails andreas = new CustomerDetails("11112222-3333", "Andreas", "Nordea", "2");
-                 
-         dummyCustomers.put("1", stanislav);
-         dummyCustomers.put("2", andreas);
-        
-         AccountDetails acc = new AccountDetails(stanislav.getBank(), stanislav.getName(), "1234", 1337, null, null, "1");
-         AccountDetails acc2 = new AccountDetails(stanislav.getBank(), stanislav.getName(), "1234", 1337, null, null, "2");
-         
-       
-         accounts.add(acc);
-         accounts.add(acc2);
-      
-     }
 
+    CustomerMapper cusMapper;
+    AccountMapper accMapper;
+    BankImpl bank;
+    CustomerImpl stanislav;
+    AccountImpl accJeff;
+    AccountImpl accJeff2;
+
+    public CustomerManagerDummy() {
+
+        cusMapper = new CustomerMapper();
+        accMapper = new AccountMapper();
+        bank = new BankImpl("1", "DanskeBank");
+        stanislav = new CustomerImpl("1", "Stanislav", bank);
+        accJeff = new AccountImpl(bank, stanislav, "1");
+        accJeff2 = new AccountImpl(bank, stanislav, "2");
+        stanislav.addAccount(accJeff);
+        stanislav.addAccount(accJeff2);
+
+    }
 
     @Override
     public CustomerDetails getCustomer(CustomerIdentifier id) throws NotFoundException {
-        return dummyCustomers.get(id.getId());
+        return cusMapper.fromInternal(stanislav);
+
     }
 
     @Override
     public List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException {
-        return this.accounts;
+        Map<String, Account> accs = stanislav.getAccounts();
+        List<AccountDetails> accDetailsList = new ArrayList();
+        for (Account acc : accs.values()) {
+            accDetailsList.add(accMapper.fromInternal(acc));
+        }
+        return accDetailsList;
     }
-    
+
 }
