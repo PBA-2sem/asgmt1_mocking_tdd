@@ -49,7 +49,7 @@ public interface IAccountManager {
      * @return amount of money
      * @param id account id
      */
-    long getBalance(AccountIdentifier id);
+    long getBalance(AccountIdentifier id) throws NotFoundException;
 
     /**
      * This method will be used to get a List of Movement, representing Account
@@ -58,7 +58,7 @@ public interface IAccountManager {
      * @param id account id
      * @return List of MovementDetails
      */
-    List<MovementDetails> getWithdrawals(AccountIdentifier id);
+    List<MovementDetails> getWithdrawals(AccountIdentifier id) throws NotFoundException;
 
     /**
      * This method will be used to get a List of Movement, representing Account
@@ -67,7 +67,7 @@ public interface IAccountManager {
      * @param id account id
      * @return List of MovementDetails
      */
-    List<MovementDetails> getDeposits(AccountIdentifier id);
+    List<MovementDetails> getDeposits(AccountIdentifier id) throws NotFoundException;
 
     /**
      * This method adds the amount to the balance
@@ -76,7 +76,7 @@ public interface IAccountManager {
      * @param amount
      * @return MovementDetails
      */
-    MovementDetails deposit(long amount, AccountIdentifier id);
+    MovementDetails deposit(long amount, AccountIdentifier id) throws NotFoundException;
 
     /**
      * This method reduces the amount from the balance
@@ -85,6 +85,6 @@ public interface IAccountManager {
      * @param amount
      * @return MovementDetails
      */
-    MovementDetails withdraw(long amount, AccountIdentifier id);
+    MovementDetails withdraw(long amount, AccountIdentifier id) throws NotFoundException;
 
 }

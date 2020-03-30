@@ -7,10 +7,7 @@ package dk.cphbusiness.banking.contractTests;
 
 import DTOs.AccountDetails;
 import DTOs.CustomerDetails;
-import DTOs.MovementDetails;
 import DTOs.identifiers.CustomerIdentifier;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
-import com.teamwingitt.banking.contract.IAccountManager;
 import com.teamwingitt.banking.contract.ICustomerManager;
 import exceptions.NotFoundException;
 import java.util.ArrayList;

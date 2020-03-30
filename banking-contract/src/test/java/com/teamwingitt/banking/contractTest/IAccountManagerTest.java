@@ -30,7 +30,7 @@ public class IAccountManagerTest {
         AccountIdentifier id = new AccountIdentifier("1");
 
         String expectedName = "DanskeBank";
-        String expectedCustomerName = "Stanislav";
+        String expectedCustomerName = "Jeff";
 
         AccountDetails result = manager.getAccount(id);
 
@@ -41,21 +41,32 @@ public class IAccountManagerTest {
     }
 
     /**
+     * Test of getBalance method, of class IAccountManager.
+     */
+    @Test
+    public void testGetBalance() throws NotFoundException{
+        System.out.println("deposit");
+        AccountIdentifier id = new AccountIdentifier("2");
+        long expectedBalance = 20;
+        assertEquals(expectedBalance, manager.getBalance(id));
+    }
+
+    /**
      * Test of transfer method, of class IAccountManager.
      */
     @Test
     public void testTransferWithAccount() throws Exception {
         System.out.println("transferWithAccount");
-        AccountIdentifier donald = new AccountIdentifier("7");
-        AccountIdentifier erdogan = new AccountIdentifier("8");
-        long amount = 100L;
-        long expectedBalanaceForDonald = 0;
-        long expectedBalanaceForErdogan = 200;
-        String sourceAccNumber = "1122"; //dumbledore
-        String targetAccNumber = "2211"; //voldemort
+        AccountIdentifier jeff = new AccountIdentifier("1");
+        AccountIdentifier mathias = new AccountIdentifier("2");
+        long amount = 10L;
+        long expectedBalanaceForJeff = 10;
+        long expectedBalanaceForMathias = 30;
+        String sourceAccNumber = "1"; //Jeff
+        String targetAccNumber = "2"; //Mathias
         manager.transfer(amount, sourceAccNumber, targetAccNumber);
-        assertEquals(expectedBalanaceForDonald, manager.getBalance(donald));
-        assertEquals(expectedBalanaceForErdogan, manager.getBalance(erdogan));
+        assertEquals(expectedBalanaceForJeff, manager.getBalance(jeff));
+        assertEquals(expectedBalanaceForMathias, manager.getBalance(mathias));
     }
 
     /**
@@ -64,36 +75,25 @@ public class IAccountManagerTest {
     @Test
     public void testTransferWithAccountNumber() throws Exception {
         System.out.println("transferWithAccountNumber");
-        AccountIdentifier donald = new AccountIdentifier("5");
-        AccountIdentifier erdogan = new AccountIdentifier("6");
+        AccountIdentifier jeff = new AccountIdentifier("1");
+        AccountIdentifier mathias = new AccountIdentifier("2");
         long amount = 10L;
-        long expectedBalanaceForDonald = 0;
-        long expectedBalanaceForErdogan = 20;
-        String sourceAccNumber = "3000"; //donaldtrump
-        String targetAccNumber = "4000"; //erdogan
+        long expectedBalanaceForJeff = 0;
+        long expectedBalanaceForMathias = 40;
+        String sourceAccNumber = "1"; //jeff
+        String targetAccNumber = "2"; //mathias
         manager.transfer(amount, sourceAccNumber, targetAccNumber);
-        assertEquals(expectedBalanaceForDonald, manager.getBalance(donald));
-        assertEquals(expectedBalanaceForErdogan, manager.getBalance(erdogan));
-    }
-
-    /**
-     * Test of getBalance method, of class IAccountManager.
-     */
-    @Test
-    public void testGetBalance() {
-        System.out.println("deposit");
-        AccountIdentifier id = new AccountIdentifier("4");
-        long expectedBalance = 1000000;
-        assertEquals(expectedBalance, manager.getBalance(id));
+        assertEquals(expectedBalanaceForJeff, manager.getBalance(jeff));
+        assertEquals(expectedBalanaceForMathias, manager.getBalance(mathias));
     }
 
     /**
      * Test of getWithdrawals method, of class IAccountManager.
      */
     @Test
-    public void testGetWithdrawals() {
+    public void testGetWithdrawals() throws NotFoundException{
         System.out.println("getWithdrawals");
-        AccountIdentifier id = new AccountIdentifier("2");
+        AccountIdentifier id = new AccountIdentifier("1");
         int expectedNumberOfWidthdrawals = 2;
         List<MovementDetails> result = manager.getWithdrawals(id);
         assertEquals(expectedNumberOfWidthdrawals, result.size());
@@ -103,7 +103,7 @@ public class IAccountManagerTest {
      * Test of getDeposits method, of class IAccountManager.
      */
     @Test
-    public void testGetDeposits() {
+    public void testGetDeposits() throws NotFoundException{
         System.out.println("getDeposits");
         AccountIdentifier id = new AccountIdentifier("2");
         int expectedNumberOfWidthdrawals = 2;
@@ -123,7 +123,7 @@ public class IAccountManagerTest {
         MovementDetails expResult = new MovementDetails("20/04/2020", 1000, "5");
         MovementDetails result = manager.deposit(amount, id);
         AccountDetails ad = manager.getAccount(id);
-        
+
         assertEquals(expectedBalance, ad.getBalance());
         assertEquals(result.getClass(), expResult.getClass());
     }
@@ -140,7 +140,7 @@ public class IAccountManagerTest {
         MovementDetails expResult = new MovementDetails("20/04/2020", 1000, "5");
         MovementDetails result = manager.withdraw(amount, id);
         AccountDetails ad = manager.getAccount(id);
-        
+
         assertEquals(expectedBalance, ad.getBalance());
         assertEquals(result.getClass(), expResult.getClass());
     }

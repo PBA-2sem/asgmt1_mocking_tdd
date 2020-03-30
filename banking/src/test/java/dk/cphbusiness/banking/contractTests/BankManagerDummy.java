@@ -6,7 +6,6 @@ import DTOs.BankDetails;
 import DTOs.identifiers.BankIdentifier;
 import DTOs.identifiers.CustomerIdentifier;
 import com.teamwingitt.banking.contract.IBankManager;
-import com.teamwingitt.banking.contract.ICustomerManager;
 import exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
