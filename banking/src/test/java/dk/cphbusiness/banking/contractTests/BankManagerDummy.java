@@ -6,7 +6,13 @@ import DTOs.BankDetails;
 import DTOs.identifiers.BankIdentifier;
 import DTOs.identifiers.CustomerIdentifier;
 import com.teamwingitt.banking.contract.IBankManager;
+import dto.mappers.AccountMapper;
+import dto.mappers.BankMapper;
+import dto.mappers.MovementMapper;
 import exceptions.NotFoundException;
+import implementations.AccountImpl;
+import implementations.BankImpl;
+import implementations.CustomerImpl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,34 +23,38 @@ import java.util.Map;
  * @author Andreas
  */
 public class BankManagerDummy implements IBankManager{
+    BankImpl bank;
+    CustomerImpl jeff;
+    CustomerImpl mathias;
+    AccountImpl accJeff;
+    AccountImpl accMathias;
+    AccountMapper accMapper;
+    MovementMapper moveMapper;
+    BankMapper bankMapper;
     
-    Map<String, BankDetails> dummyBanks = new HashMap<>();   
-    List<AccountDetails> accounts = new ArrayList<>();
     public BankManagerDummy(){
-        
-        
-        BankDetails bank = new BankDetails("DanskeBank", "310912409214", "1");
-        BankDetails bank2 = new BankDetails("Danske", "310912409214", "2");
-    
-        dummyBanks.put("1", bank);
-        dummyBanks.put("2", bank2);
-        AccountDetails acc = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337, null, null, "1");
-        AccountDetails acc2 = new AccountDetails("Nordea", "Andreas", "4321", 420, null, null, "2");
-         
-       
-         accounts.add(acc);
-         accounts.add(acc2);
-    
+        accMapper = new AccountMapper();
+        moveMapper = new MovementMapper();
+        bankMapper = new BankMapper();
+        bank = new BankImpl("1", "DanskeBank");
+        jeff = new CustomerImpl("1", "Jeff", bank);
+        mathias = new CustomerImpl("2", "Mathias", bank);
+        accJeff = new AccountImpl(bank, jeff, "1");
+        accMathias = new AccountImpl(bank, mathias, "2");
+        bank.addAccount(accJeff);
+        bank.addAccount(accMathias);
+//    
     }
 
     @Override
     public BankDetails getBank(BankIdentifier id) throws NotFoundException {
-        return dummyBanks.get(id.getId());
+        return bankMapper.fromInternal(bank);
     }
 
     @Override
     public List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException {
-        return this.accounts;
+       // bank.getAccounts(id.getId());
+        return null;
     }
 
 

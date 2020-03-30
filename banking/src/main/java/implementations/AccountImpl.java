@@ -80,14 +80,19 @@ public class AccountImpl implements Account {
     }
 
     @Override
-    public void deposit(long amount) {
-        this.deposits.add(new MovementImpl(amount));
-        balance += amount;
-    }
+    public Movement deposit(long amount) {
+          
+      Movement movement = new MovementImpl(amount);
+      this.deposits.add(movement);
+      balance += amount;
+      return movement;
+        }
 
     @Override
-    public void withdraw(long amount) {
-        this.withdrawals.add(new MovementImpl(-amount));
+    public Movement withdraw(long amount) {
+        Movement movement = new MovementImpl(-amount);
+        this.withdrawals.add(movement);
         balance += -amount;
+        return movement;
     }
 }

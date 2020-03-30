@@ -78,13 +78,13 @@ public interface Account {
      * 
      * @param amount
      */
-    void deposit(long amount);
+    Movement deposit(long amount);
 
     /**
      * This method reduces the amount from the balance
      * 
      * @param amount
      */
-    void withdraw(long amount);
+    Movement withdraw(long amount);
 
 }

@@ -4,6 +4,7 @@ import dk.cphbusiness.banking.interfaces.Account;
 import dk.cphbusiness.banking.interfaces.Bank;
 import dk.cphbusiness.banking.interfaces.Customer;
 import exceptions.NotFoundException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,12 +16,16 @@ public class BankImpl implements Bank {
     private final String cvr;
     private final String name;
     private final Map<String, Account> accounts;
+    private final Map<String, Customer> customers;
 
-    public BankImpl(String cvr, String name, Map<String, Account> accounts) {
+    public BankImpl(String cvr, String name) {
         this.cvr = cvr;
         this.name = name;
-        this.accounts = accounts;
+        this.accounts = new HashMap<>();
+        this.customers = new HashMap<>();
     }
+    
+    
 
     @Override
     public String getCvr() {
@@ -50,5 +55,10 @@ public class BankImpl implements Bank {
     @Override
     public Map<String, Account> getAccounts(Customer customer) {
         return customer.getAccounts();
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

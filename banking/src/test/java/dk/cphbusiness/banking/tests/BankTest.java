@@ -26,7 +26,7 @@ public class BankTest {
         final String targetNumber = "TGT54321";
         final String cvr = "23456789";
         final String name = "BankBank";
-        final Bank bank = new BankImpl(cvr, name, new HashMap<>());
+        final Bank bank = new BankImpl(cvr, name);
 
         bank.getAccount(targetNumber);
     }
@@ -38,7 +38,7 @@ public class BankTest {
         final String targetNumber = "TGT54321";
         final String cvr = "23456789";
         final String name = "BankBank";
-        final Bank bank = new BankImpl(cvr, name, new HashMap<>());
+        final Bank bank = new BankImpl(cvr, name);
 
         final Account acc = new AccountImpl(bank, customer, targetNumber);
 
@@ -57,7 +57,7 @@ public class BankTest {
     public void testGetAccounts() {
         final String cvr = "23456789";
         final String name = "BankBank";
-        final Bank bank = new BankImpl(cvr, name, new HashMap<>());
+        final Bank bank = new BankImpl(cvr, name);
 
         final String cpr = "23456768";
         final String cName = "jeff";

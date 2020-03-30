@@ -6,6 +6,7 @@ import DTOs.identifiers.AccountIdentifier;
 import com.teamwingitt.banking.contract.IAccountManager;
 import dk.cphbusiness.banking.interfaces.Account;
 import dto.mappers.AccountMapper;
+import dto.mappers.MovementMapper;
 import exceptions.NotFoundException;
 import implementations.AccountImpl;
 import implementations.BankImpl;
@@ -23,11 +24,13 @@ public class AccountManagerDummy implements IAccountManager {
     AccountImpl accJeff;
     AccountImpl accMathias;
     AccountMapper accMapper;
+    MovementMapper moveMapper;
 
     public AccountManagerDummy() {
 
         accMapper = new AccountMapper();
-        bank = new BankImpl("1", "DanskeBank", new HashMap<>());
+        moveMapper = new MovementMapper();
+        bank = new BankImpl("1", "DanskeBank");
         jeff = new CustomerImpl("1", "Jeff", bank);
         mathias = new CustomerImpl("2", "Mathias", bank);
         accJeff = new AccountImpl(bank, jeff, "1");
@@ -123,20 +126,24 @@ public class AccountManagerDummy implements IAccountManager {
 
     @Override
     public MovementDetails deposit(long amount, AccountIdentifier id) throws NotFoundException {
+        Account acc = this.bank.getAccount(id.getId());
+        return moveMapper.fromInternal(acc.deposit(amount));
+
 //        dummyAccounts.get(id.getId()).setBalance(amount);
 //        MovementDetails md = new MovementDetails("20/04/2020", amount, "5");
 //        dummyAccounts.get(id.getId()).getWithdrawals().add(md);
 //        return md;
-        return null;
     }
 
     @Override
     public MovementDetails withdraw(long amount, AccountIdentifier id) throws NotFoundException {
+        Account acc = this.bank.getAccount(id.getId());
+        return moveMapper.fromInternal(acc.withdraw(amount));
+
 //        dummyAccounts.get(id.getId()).setBalance(-amount);
 //        MovementDetails md = new MovementDetails("20/04/2020", -amount, "5");
 //        dummyAccounts.get(id.getId()).getWithdrawals().add(md);
 //        return md;
-        return null;
     }
 
 }
