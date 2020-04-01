@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Assume;
+import org.junit.Before;
 
 /**
  *
@@ -24,6 +26,11 @@ public class ICustomerManagerTest {
 
     public ICustomerManagerTest() {
         manager = ManagerHolder.customerManager;
+    }
+
+    @Before
+    public void beforeMethod() {
+        Assume.assumeNotNull(manager);
     }
 
     /**
@@ -53,7 +60,7 @@ public class ICustomerManagerTest {
 
         CustomerIdentifier id = new CustomerIdentifier("1");
         List<AccountDetails> expResult = accounts;
-        
+
         List<AccountDetails> result = manager.getAccounts(id);
         assertEquals(expResult.getClass(), result.getClass());
         assertEquals(expResult.size(), result.size());
