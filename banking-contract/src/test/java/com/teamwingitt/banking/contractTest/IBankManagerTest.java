@@ -7,14 +7,11 @@ package com.teamwingitt.banking.contractTest;
 
 import DTOs.AccountDetails;
 import DTOs.BankDetails;
-import DTOs.CustomerDetails;
 import DTOs.identifiers.BankIdentifier;
 import DTOs.identifiers.CustomerIdentifier;
 import com.teamwingitt.banking.contract.IBankManager;
-import exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -39,7 +36,7 @@ public class IBankManagerTest {
     public void testGetBank() throws Exception {
         System.out.println("getBank");
         BankIdentifier id = new BankIdentifier("1");
-        String expResult = "DanskeBank";
+        String expResult = "Danske Bank";
         BankDetails result = manager.getBank(id);
         assertEquals(expResult, result.getName());
     }
@@ -54,13 +51,16 @@ public class IBankManagerTest {
         System.out.println("getAccounts - Bank");
 
         List<AccountDetails> accounts = new ArrayList<>();
-        AccountDetails acc = new AccountDetails("DanskeBank", "Stanislav", "1234", 1337, null, null, "1");
+        AccountDetails acc = new AccountDetails("Danske Bank", "Jeff", "1", 20, null, null, "1");
         accounts.add(acc);
         CustomerIdentifier id = new CustomerIdentifier("1");
-        List<AccountDetails> expResult = accounts;
+        String expResult = "Danske Bank";
+        int expSize = 1;
+
         List<AccountDetails> result = manager.getAccounts(id);
-        assertEquals(expResult.get(0).getBank(), result.get(0).getBank());
-        assertEquals(expResult.size(), result.size());
+        
+        assertEquals(expResult, result.get(0).getBank());
+        assertEquals(expSize, result.size());
     }
 
 }
