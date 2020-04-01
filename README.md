@@ -44,7 +44,7 @@ The contract has a test package that contains test classes for each of the manag
 #### How to run
 To protect "production" credentials the project has a [DBConnectorTemplate.java](banking/src/main/java/DataLayer/DBConnectorTemplate.java) that should be copied in same folder and renamed to **DBConnector.java**, this file is the "production" DBConnector, and should have the right credentials, it will be ignored by git, and never pushed to remote.
 
-*Command line (bash) to create file copy and rename class to correct name:*
+*Command line (bash) command to create file copy and rename class to correct name, navigate to root folder of the projects:*
 ```shell
 cp banking/src/main/java/DataLayer/DBConnectorTemplate.java banking/src/main/java/DataLayer/DBConnector.java && sed -i 's/DBConnectorTemplate/DBConnector/g' banking/src/main/java/DataLayer/DBConnector.java
 ```
