@@ -29,7 +29,7 @@ public class IAccountManagerTest {
         System.out.println("getAccount");
         AccountIdentifier id = new AccountIdentifier("1");
 
-        String expectedName = "DanskeBank";
+        String expectedName = "Danske Bank";
         String expectedCustomerName = "Jeff";
 
         AccountDetails result = manager.getAccount(id);

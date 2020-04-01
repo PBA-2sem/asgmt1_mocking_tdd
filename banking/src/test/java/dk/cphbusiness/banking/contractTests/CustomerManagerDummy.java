@@ -29,7 +29,7 @@ public class CustomerManagerDummy implements ICustomerManager {
     CustomerMapper cusMapper;
     AccountMapper accMapper;
     BankImpl bank;
-    CustomerImpl stanislav;
+    CustomerImpl jeff;
     AccountImpl accJeff;
     AccountImpl accJeff2;
 
@@ -38,23 +38,23 @@ public class CustomerManagerDummy implements ICustomerManager {
         cusMapper = new CustomerMapper();
         accMapper = new AccountMapper();
         bank = new BankImpl("1", "DanskeBank");
-        stanislav = new CustomerImpl("1", "Stanislav", bank);
-        accJeff = new AccountImpl(bank, stanislav, "1");
-        accJeff2 = new AccountImpl(bank, stanislav, "2");
-        stanislav.addAccount(accJeff);
-        stanislav.addAccount(accJeff2);
+        jeff = new CustomerImpl("1", "Jeff", bank);
+        accJeff = new AccountImpl(bank, jeff, "1");
+        accJeff2 = new AccountImpl(bank, jeff, "2");
+        jeff.addAccount(accJeff);
+        jeff.addAccount(accJeff2);
 
     }
 
     @Override
     public CustomerDetails getCustomer(CustomerIdentifier id) throws NotFoundException {
-        return cusMapper.fromInternal(stanislav);
+        return cusMapper.fromInternal(jeff);
 
     }
 
     @Override
     public List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException {
-        Map<String, Account> accs = stanislav.getAccounts();
+        Map<String, Account> accs = jeff.getAccounts();
         List<AccountDetails> accDetailsList = new ArrayList();
         for (Account acc : accs.values()) {
             accDetailsList.add(accMapper.fromInternal(acc));

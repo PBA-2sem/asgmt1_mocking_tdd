@@ -36,7 +36,7 @@ public class BankManagerDummy implements IBankManager {
         accMapper = new AccountMapper();
         moveMapper = new MovementMapper();
         bankMapper = new BankMapper();
-        bank = new BankImpl("1", "DanskeBank");
+        bank = new BankImpl("1", "Danske Bank");
         jeff = new CustomerImpl("1", "Jeff", bank);
         accJeff = new AccountImpl(bank, jeff, "1");
         bank.addAccount(accJeff);

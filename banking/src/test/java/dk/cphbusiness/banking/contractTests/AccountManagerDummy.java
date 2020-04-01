@@ -27,7 +27,7 @@ public class AccountManagerDummy implements IAccountManager {
 
         accMapper = new AccountMapper();
         moveMapper = new MovementMapper();
-        bank = new BankImpl("1", "DanskeBank");
+        bank = new BankImpl("1", "Danske Bank");
         jeff = new CustomerImpl("1", "Jeff", bank);
         mathias = new CustomerImpl("2", "Mathias", bank);
         accJeff = new AccountImpl(bank, jeff, "1");
