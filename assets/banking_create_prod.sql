@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `banking`.`account` (
 DROP TABLE IF EXISTS `banking`.`movement` ;
 
 CREATE TABLE IF NOT EXISTS `banking`.`movement` (
-  `idmovement` INT NOT NULL,
+  `idmovement` INT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `amount` INT NOT NULL,
   `source_account` VARCHAR(255) NULL,

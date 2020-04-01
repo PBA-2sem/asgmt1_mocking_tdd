@@ -60,7 +60,7 @@ public class IAccountManagerTest {
         AccountIdentifier id = new AccountIdentifier("1");
         long amount = 1000;
         long expectedBalance = manager.getBalance(id) + amount;
-        MovementDetails expResult = new MovementDetails("20/04/2020", 1020, "5");
+        MovementDetails expResult = new MovementDetails("2020-01-01 00:00:01", 1020, "5");
         MovementDetails result = manager.deposit(amount, id);
         AccountDetails ad = manager.getAccount(id);
 
@@ -125,7 +125,7 @@ public class IAccountManagerTest {
         AccountIdentifier id = new AccountIdentifier("1"); //Jeff
         long amount = 1000;
         long expectedBalance = manager.getBalance(id) - amount;
-        MovementDetails expResult = new MovementDetails("20/04/2020", 0, "5");
+        MovementDetails expResult = new MovementDetails("2020-01-01 00:00:01", 0, "5");
         MovementDetails result = manager.withdraw(amount, id);
         AccountDetails ad = manager.getAccount(id);
 

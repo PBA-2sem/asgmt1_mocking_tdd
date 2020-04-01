@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `bankingTest`.`accountTest` (
 DROP TABLE IF EXISTS `bankingTest`.`movementTest` ;
 
 CREATE TABLE IF NOT EXISTS `bankingTest`.`movementTest` (
-  `idmovement` INT NOT NULL,
+  `idmovement` INT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `amount` INT NOT NULL,
   `source_account` VARCHAR(255) NULL,
@@ -86,25 +86,42 @@ CREATE TABLE IF NOT EXISTS `bankingTest`.`movementTest` (
 
 -- -----------------------------------------------------
 -- ** Populate tables **
--- -----------------------------------------------------
-
 
 -- -----------------------------------------------------
 -- Bank
+-- `cvr` VARCHAR(255) NOT NULL,
+-- `name` VARCHAR(255) NOT NULL,
 -- -----------------------------------------------------
-INSERT INTO `bankingTest`.`bankTest` ('cvr', 'name')
-VALUES ('1', 'DanskeBank');
+INSERT INTO `bankingTest`.`bankTest` (cvr, name)
+VALUES ('1', 'Danske Bank');
 -- -----------------------------------------------------
 -- Customer
+-- `cpr` INT NOT NULL,
+-- `name` VARCHAR(45) NOT NULL,
+-- `cvr` VARCHAR(255) NOT NULL, <- Foreign key
 -- -----------------------------------------------------
-INSERT INTO `bankingTest`.`customerTest` ('cpr', 'name', 'cvr')
+INSERT INTO `bankingTest`.`customerTest` (cpr, name, cvr)
 VALUES ('1', 'Jeff', '1'),
        ('2', 'Mathias', '1');
        
 -- -----------------------------------------------------
 -- Account
+-- `number` VARCHAR(255) NOT NULL,
+-- `balance` INT NULL,
+-- `cpr` INT NOT NULL,  <- Foreign key
 -- -----------------------------------------------------
+INSERT INTO `bankingTest`.`accountTest` (number, balance, cpr)
+VALUES ('1', 20, '1'),
+       ('2', 20, '2');
 
 -- -----------------------------------------------------
 -- Movement
+-- `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+-- `amount` INT NOT NULL,
+-- `source_account` VARCHAR(255) NULL,              <- FK
+-- `destination_account` VARCHAR(255) NULL,         <- FK
+-- `type` ENUM("withdrawal", "deposit") NOT NULL,
 -- -----------------------------------------------------
+INSERT INTO `bankingTest`.`movementTest` (timestamp, amount, source_account, destination_account, type)
+VALUES ('2020-01-01 00:00:01', 20, null, '1', 'deposit'),
+       ('2020-01-01 00:00:01', 20, null, '2', 'deposit');
