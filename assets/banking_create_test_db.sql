@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS `bankingTest`.`bankTest` (
   `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`cvr`));
 
-
 -- -----------------------------------------------------
 -- Table `bankingTest`.`customerTest`
 -- -----------------------------------------------------
@@ -81,3 +80,31 @@ CREATE TABLE IF NOT EXISTS `bankingTest`.`movementTest` (
     REFERENCES `bankingTest`.`accountTest` (`number`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+
+
+
+-- -----------------------------------------------------
+-- ** Populate tables **
+-- -----------------------------------------------------
+
+
+-- -----------------------------------------------------
+-- Bank
+-- -----------------------------------------------------
+INSERT INTO `bankingTest`.`bankTest` ('cvr', 'name')
+VALUES ('1', 'DanskeBank');
+-- -----------------------------------------------------
+-- Customer
+-- -----------------------------------------------------
+INSERT INTO `bankingTest`.`customerTest` ('cpr', 'name', 'cvr')
+VALUES ('1', 'Jeff', '1'),
+       ('2', 'Mathias', '1');
+       
+-- -----------------------------------------------------
+-- Account
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Movement
+-- -----------------------------------------------------
