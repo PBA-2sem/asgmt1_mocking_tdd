@@ -8,6 +8,8 @@ import exceptions.NotFoundException;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Assume;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
@@ -18,6 +20,11 @@ public class IAccountManagerTest {
 
     public IAccountManagerTest() {
         manager = ManagerHolder.accountManager;
+    }
+
+    @Before
+    public void beforeMethod() {
+        Assume.assumeNotNull(manager);
     }
 
     /**

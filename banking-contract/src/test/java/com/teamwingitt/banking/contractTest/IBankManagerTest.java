@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Assume;
+import org.junit.Before;
 
 /**
  *
@@ -25,6 +27,11 @@ public class IBankManagerTest {
 
     public IBankManagerTest() {
         manager = ManagerHolder.bankManager;
+    }
+
+    @Before
+    public void beforeMethod() {
+        Assume.assumeNotNull(manager);
     }
 
     /**
@@ -58,7 +65,7 @@ public class IBankManagerTest {
         int expSize = 1;
 
         List<AccountDetails> result = manager.getAccounts(id);
-        
+
         assertEquals(expResult, result.get(0).getBank());
         assertEquals(expSize, result.size());
     }
