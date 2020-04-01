@@ -1,7 +1,6 @@
 -- -----------------------------------------------------
 -- TEST DATABASE INIT
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `bankingTest`;
 
 -- -----------------------------------------------------
 -- Schema bankingTest
@@ -13,20 +12,19 @@ USE `bankingTest` ;
 -- Table `bankingTest`.`bank`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bankingTest`.`bank`;
-CREATE TABLE `bankingTest`.`bank` LIKE `banking`.`bank`;
+CREATE TABLE `bankingTest`.`bank` LIKE `bankingTest`.`bankTest`;
 
 -- -----------------------------------------------------
 -- Table `bankingTest`.`customer`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bankingTest`.`customer`;
 
-CREATE TABLE `bankingTest`.`customer` LIKE `banking`.`customer`;
-
+CREATE TABLE `bankingTest`.`customer` LIKE `bankingTest`.`customerTest`;
 -- -----------------------------------------------------
 -- Table `bankingTest`.`account`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bankingTest`.`account` ;
-CREATE TABLE `bankingTest`.`account` LIKE `banking`.`account`;
+CREATE TABLE `bankingTest`.`account` LIKE `bankingTest`.`accountTest`;
 
 
 -- -----------------------------------------------------
@@ -34,4 +32,4 @@ CREATE TABLE `bankingTest`.`account` LIKE `banking`.`account`;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bankingTest`.`movement` ;
 
-CREATE TABLE `bankingTest`.`movement` LIKE `banking`.`movement`;
+CREATE TABLE `bankingTest`.`movement` LIKE `bankingTest`.`movementTest`;
