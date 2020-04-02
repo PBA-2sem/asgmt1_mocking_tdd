@@ -1,31 +1,21 @@
 package dao;
 
-import DTOs.AccountDetails;
 import DataLayer.DBConnector;
+import dk.cphbusiness.banking.interfaces.Account;
+import dk.cphbusiness.banking.interfaces.Bank;
 import implementations.AccountImpl;
+import implementations.BankImpl;
+import implementations.CustomerImpl;
 import java.io.Serializable;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.PreparedStatement;
 
 /**
  *
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
-public class AccountDAO implements dao.IDAO {
-
-    private Statement stmt;
-    private ResultSet rs;
-    private DBConnector dbconnector;
-
-    public AccountDAO(DBConnector dbconnector) {
-        this.dbconnector = dbconnector;
-    }
+public class AccountDAO implements IDAO {
 
     @Override
     public Object create(Object object) {
@@ -67,9 +57,61 @@ public class AccountDAO implements dao.IDAO {
 //
 //        return accountList;
 //    }
-    
     @Override
     public Object read(Serializable key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Account acc = null;
+
+        try {
+            PreparedStatement stmt;
+            ResultSet rs;
+
+            String sql = "SELECT number, balance, c.cpr as customerCpr, c.name as customerName, b.name as bankName, b.cvr as bankCvr \n"
+                    + "FROM account a \n"
+                    + "LEFT JOIN customer as c ON c.cpr = a.cpr \n"
+                    + "RIGHT JOIN bank as b ON c.cvr = b.cvr \n"
+                    + "WHERE number = ?";
+            stmt = DBConnector.getConnection().prepareStatement(sql);
+            stmt.setString(1, key.toString());
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String number = rs.getString("number");
+                long balance = (long) rs.getInt("balance");
+                String cvr = rs.getString("bankCvr");
+                String bankName = rs.getString("bankName");
+                String customerName = rs.getString("customerName");
+                String cpr = "" + rs.getInt("customerCpr");
+
+                Bank b = new BankImpl(cvr, bankName);
+                acc = new AccountImpl(b, new CustomerImpl(cpr, customerName, b), number, balance);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("error: " + ex.getMessage());
+        }
+
+        return acc;
+    }
+
+    public void updateBalanceForAccount(Serializable id, long balance) {
+        try {
+            PreparedStatement stmt;
+
+            String sql = "UPDATE account\n"
+                    + "SET balance = ?\n"
+                    + "WHERE number = ?;";
+
+            stmt = DBConnector.getConnection().prepareStatement(sql);
+            stmt.setInt(1, (int) balance);
+            stmt.setString(2, id.toString());
+
+            stmt.executeUpdate();
+            stmt.close();
+            DBConnector.getConnection().commit();
+
+        } catch (SQLException ex) {
+            System.out.println("error: " + ex.getMessage());
+        }
+
     }
 }

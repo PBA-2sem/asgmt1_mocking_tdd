@@ -18,8 +18,8 @@ public class AccountImpl implements Account {
     private final Customer customer;
     private final String number;
     private long balance = 0;
-    private final List<Movement> withdrawals;
-    private final List<Movement> deposits;
+    private List<Movement> withdrawals;
+    private List<Movement> deposits;
 
     public AccountImpl(Bank bank, Customer customer, String number) {
         this.bank = bank;
@@ -79,9 +79,17 @@ public class AccountImpl implements Account {
 
     }
 
+    public void addWithdrawals(List<Movement> withdrawals) {
+        this.withdrawals = withdrawals;
+    }
+
     @Override
     public List<Movement> getDeposits() {
         return deposits;
+    }
+
+    public void addDeposits(List<Movement> deposits) {
+        this.deposits = deposits;
     }
 
     @Override

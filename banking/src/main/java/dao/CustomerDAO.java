@@ -16,6 +16,7 @@ import java.util.List;
  *
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
+
 public class CustomerDAO implements dao.IDAO {
 
     private Statement stmt;
