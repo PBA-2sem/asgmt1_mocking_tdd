@@ -46,6 +46,7 @@ public interface Bank {
      * @param account the given Account
      */
     void addAccount(Account account);
-    
+
     void addCustomer(Customer customer);
+
 }

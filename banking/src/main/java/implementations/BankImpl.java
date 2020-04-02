@@ -24,8 +24,6 @@ public class BankImpl implements Bank {
         this.accounts = new HashMap<>();
         this.customers = new HashMap<>();
     }
-    
-    
 
     @Override
     public String getCvr() {
@@ -59,6 +57,6 @@ public class BankImpl implements Bank {
 
     @Override
     public void addCustomer(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        customers.put(customer.getCpr(), customer);
     }
 }

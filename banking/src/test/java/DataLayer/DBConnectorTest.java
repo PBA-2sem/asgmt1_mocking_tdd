@@ -21,21 +21,6 @@ import static org.junit.Assert.*;
  */
 public class DBConnectorTest {
 
-    static DBConnector dbconnector;
-    AccountDAO accDao;
-
-    public DBConnectorTest() {
-
-        dbconnector = new DBConnector();
-        accDao = new AccountDAO(dbconnector);
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws IOException {
-        Utils.establishDBConnection();
-        Utils.runSQLScript("banking_create_test_db.sql");
-    }
-
     /**
      * Test of setConn method, of class DBConnector.
      *
@@ -47,16 +32,4 @@ public class DBConnectorTest {
         Connection conn = DBConnector.getConnection();
         assertFalse(conn.isClosed());
     }
-
-//    @Test
-//    public void testReadAllAccountsFromDB() throws SQLException {
-//        System.out.println("readAllAccountsFromDB");
-//        
-//        List<AccountDetails> result = accDao.readAll();
-//        
-//        assertTrue(result.get(0) instanceof AccountDetails);
-//        assertEquals(result.get(0).getNumber(), "1");
-//        assertEquals(result.get(1).getNumber(), "2");
-//        assertEquals(result.size(), 2);
-//    }
 }

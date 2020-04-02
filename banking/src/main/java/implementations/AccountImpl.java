@@ -29,6 +29,16 @@ public class AccountImpl implements Account {
         this.deposits = new ArrayList<>();
     }
 
+    //DB usage
+    public AccountImpl(Bank bank, Customer customer, String number, long balance) {
+        this.bank = bank;
+        this.customer = customer;
+        this.number = number;
+        this.withdrawals = new ArrayList<>();
+        this.deposits = new ArrayList<>();
+        this.balance = balance;
+    }
+
     @Override
     public void transfer(long amount, Account target) throws NotFoundException {
         if (target == null) {
@@ -81,12 +91,12 @@ public class AccountImpl implements Account {
 
     @Override
     public Movement deposit(long amount) {
-          
-      Movement movement = new MovementImpl(amount);
-      this.deposits.add(movement);
-      balance += amount;
-      return movement;
-        }
+
+        Movement movement = new MovementImpl(amount);
+        this.deposits.add(movement);
+        balance += amount;
+        return movement;
+    }
 
     @Override
     public Movement withdraw(long amount) {
