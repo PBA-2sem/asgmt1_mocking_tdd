@@ -6,6 +6,7 @@ import com.teamwingitt.banking.contractTest.IAccountManagerTest;
 import com.teamwingitt.banking.contractTest.ICustomerManagerTest;
 import com.teamwingitt.banking.contractTest.IBankManagerTest;
 import com.teamwingitt.banking.contractTest.ManagerHolder;
+import implementations.db.AccountManager;
 import implementations.db.BankManager;
 import java.io.IOException;
 import org.junit.BeforeClass;
@@ -15,7 +16,8 @@ import org.junit.BeforeClass;
     DBConnectorTest.class,
     IAccountManagerTest.class,
     ICustomerManagerTest.class,
-    IBankManagerTest.class})
+    IBankManagerTest.class
+})
 
 public class ContractManagerDBTest {
 
@@ -27,7 +29,8 @@ public class ContractManagerDBTest {
         Utils.runSQLScript("bank_test_setup.sql");
         Utils.runSQLScript("account_test_setup.sql");
         Utils.runSQLScript("customer_test_setup.sql");
-        ManagerHolder.accountManager = null;
+        Utils.runSQLScript("movement_test_setup.sql");
+        ManagerHolder.accountManager = new AccountManager();
         ManagerHolder.bankManager = new BankManager();
         ManagerHolder.customerManager = null;
     }

@@ -17,6 +17,11 @@ public class MovementImpl implements Movement {
         this.amount = amount;
     }
 
+    public MovementImpl(long amount, LocalDateTime time) {
+        this.time = time;
+        this.amount = amount;
+    }
+
     @Override
     public LocalDateTime getTime() {
         return this.time;

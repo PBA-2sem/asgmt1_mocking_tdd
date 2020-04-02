@@ -28,6 +28,36 @@ public class IAccountManagerTest {
     }
 
     /**
+     * Test of deposit method, of class IAccountManager.
+     */
+    @Test
+    public void testDeposit() throws NotFoundException {
+        System.out.println("deposit");
+        AccountIdentifier id = new AccountIdentifier("1");
+        long amount = 1000;
+        long expectedBalance = manager.getBalance(id) + amount;
+        MovementDetails expResult = new MovementDetails("2020-01-01 00:00:01", 1020, "5");
+        MovementDetails result = manager.deposit(amount, id);
+        AccountDetails ad = manager.getAccount(id);
+
+        assertEquals(expectedBalance, ad.getBalance());
+        assertEquals(result.getClass(), expResult.getClass());
+    }
+    
+    
+    /**
+     * Test of getDeposits method, of class IAccountManager.
+     */
+    @Test
+    public void testDeposits() throws NotFoundException {
+        System.out.println("getDeposits");
+        AccountIdentifier id = new AccountIdentifier("2");
+        int expectedNumberOfDeposits = 1;
+        List<MovementDetails> result = manager.getDeposits(id);
+        assertEquals(expectedNumberOfDeposits, result.size());
+    }
+    
+    /**
      * Test of getAccount method, of class IAccountManager.
      */
     @Test
@@ -58,34 +88,7 @@ public class IAccountManagerTest {
         assertEquals(expectedBalance, manager.getBalance(id));
     }
 
-    /**
-     * Test of deposit method, of class IAccountManager.
-     */
-    @Test
-    public void testDeposit() throws NotFoundException {
-        System.out.println("deposit");
-        AccountIdentifier id = new AccountIdentifier("1");
-        long amount = 1000;
-        long expectedBalance = manager.getBalance(id) + amount;
-        MovementDetails expResult = new MovementDetails("2020-01-01 00:00:01", 1020, "5");
-        MovementDetails result = manager.deposit(amount, id);
-        AccountDetails ad = manager.getAccount(id);
 
-        assertEquals(expectedBalance, ad.getBalance());
-        assertEquals(result.getClass(), expResult.getClass());
-    }
-
-    /**
-     * Test of getDeposits method, of class IAccountManager.
-     */
-    @Test
-    public void testDeposits() throws NotFoundException {
-        System.out.println("getDeposits");
-        AccountIdentifier id = new AccountIdentifier("2");
-        int expectedNumberOfDeposits = 1;
-        List<MovementDetails> result = manager.getDeposits(id);
-        assertEquals(expectedNumberOfDeposits, result.size());
-    }
 
     /**
      * Test of transfer method, of class IAccountManager.
