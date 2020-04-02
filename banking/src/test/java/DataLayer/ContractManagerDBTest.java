@@ -10,6 +10,8 @@ import implementations.db.AccountManager;
 import implementations.db.BankManager;
 import implementations.db.CustomerManager;
 import java.io.IOException;
+import java.sql.SQLException;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 @RunWith(Suite.class)
@@ -34,6 +36,11 @@ public class ContractManagerDBTest {
         ManagerHolder.accountManager = new AccountManager();
         ManagerHolder.bankManager = new BankManager();
         ManagerHolder.customerManager = new CustomerManager();
+    }
+    
+    @AfterClass
+    public static void after() throws SQLException {
+        DBConnector.getConnection().close();
     }
 
 }

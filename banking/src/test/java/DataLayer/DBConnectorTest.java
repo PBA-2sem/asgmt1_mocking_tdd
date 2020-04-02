@@ -5,13 +5,8 @@
  */
 package DataLayer;
 
-import DTOs.AccountDetails;
-import dao.AccountDAO;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

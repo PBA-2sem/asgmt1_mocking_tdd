@@ -59,13 +59,14 @@ public class IBankManagerTest {
 
         List<AccountDetails> accounts = new ArrayList<>();
         AccountDetails acc = new AccountDetails("Danske Bank", "Jeff", "1", 20, null, null, "1");
+        AccountDetails acc2 = new AccountDetails("Danske Bank", "Jeff", "3", 20, null, null, "3");
         accounts.add(acc);
+        accounts.add(acc2);
         CustomerIdentifier id = new CustomerIdentifier("1");
         String expResult = "Danske Bank";
-        int expSize = 1;
+        int expSize = 2;
 
         List<AccountDetails> result = manager.getAccounts(id);
-
         assertEquals(expResult, result.get(0).getBank());
         assertEquals(expSize, result.size());
     }

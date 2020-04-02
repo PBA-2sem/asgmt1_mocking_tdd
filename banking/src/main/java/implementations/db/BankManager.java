@@ -34,7 +34,9 @@ public class BankManager implements IBankManager {
         //TODO
         List<AccountImpl> accountsInternal = bankDAO.getAccounts(id);
         List<AccountDetails> accounts = new ArrayList<>();
-        //accountsInternal.forEach((a) -> accounts.add(accountMapper.fromInternal()));
+        
+        accountsInternal.forEach((a) -> accounts.add(accountMapper.fromInternal(a)));
+        
         return accounts;
     }
 }

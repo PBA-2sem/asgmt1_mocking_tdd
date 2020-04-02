@@ -112,7 +112,8 @@ VALUES ('1', 'Jeff', '1'),
 -- -----------------------------------------------------
 INSERT INTO `bankingTest`.`accountTest` (number, balance, cpr)
 VALUES ('1', 20, '1'),
-       ('2', 20, '2');
+       ('2', 20, '2'),
+       ('3', 20, '1');
 
 -- -----------------------------------------------------
 -- Movement
@@ -124,4 +125,5 @@ VALUES ('1', 20, '1'),
 -- -----------------------------------------------------
 INSERT INTO `bankingTest`.`movementTest` (timestamp, amount, source_account, destination_account, type)
 VALUES ('2020-01-01 00:00:01', 20, null, '1', 'deposit'),
-       ('2020-01-01 00:00:01', 20, null, '2', 'deposit');
+       ('2020-01-01 00:00:01', 20, null, '2', 'deposit'),
+       ('2020-01-01 00:00:01', 20, null, '3', 'deposit');

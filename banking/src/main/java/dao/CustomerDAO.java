@@ -2,12 +2,15 @@ package dao;
 
 import DTOs.CustomerDetails;
 import DataLayer.DBConnector;
+import dk.cphbusiness.banking.interfaces.Bank;
 import implementations.AccountImpl;
 import implementations.BankImpl;
 import implementations.CustomerImpl;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,31 +27,39 @@ public class CustomerDAO implements dao.IDAO {
     
     
     public List<AccountImpl> getAccountsDB(String id){
-        String sql = "Select * from account where cpr = " + id;
-        
         List<AccountImpl> accounts = new ArrayList<>();
-        
-        BankImpl bank = new BankImpl("", "");
-        CustomerImpl customer = new CustomerImpl("", "", bank);
-        AccountImpl acc = new AccountImpl(bank, customer, "");
-        String number = "";
-        
-        
         try {
-             stmt = DBConnector.getConnection().createStatement();
-            rs = stmt.executeQuery(sql);
-             while (rs.next()) {
-                number = rs.getString("number");
-                acc = new AccountImpl(bank, customer, number);
-                accounts.add(acc);
+            PreparedStatement stmt;
+            ResultSet rs;
+
+            String sql = "SELECT number, balance, c.cpr as customerCpr, c.name as customerName, b.name as bankName, b.cvr as bankCvr \n"
+                    + "FROM account a \n"
+                    + "LEFT JOIN customer as c ON c.cpr = a.cpr \n"
+                    + "RIGHT JOIN bank as b ON c.cvr = b.cvr \n"
+                    + "WHERE a.cpr = ?";
+
+            stmt = DBConnector.getConnection().prepareStatement(sql);
+            stmt.setString(1, id);
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String number = rs.getString("number");
+                long balance = (long) rs.getInt("balance");
+                String cvr = rs.getString("bankCvr");
+                String bankName = rs.getString("bankName");
+                String customerName = rs.getString("customerName");
+                String cpr = "" + rs.getInt("customerCpr");
+
+                Bank b = new BankImpl(cvr, bankName);
+                accounts.add(new AccountImpl(b, new CustomerImpl(cpr, customerName, b), number, balance));
+
             }
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +accounts.size());
-                
-             
-        } catch (Exception e) {
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
+        
         return accounts;
-    
     }
 
     public CustomerImpl getCustomerDB(String id) {
