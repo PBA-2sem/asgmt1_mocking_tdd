@@ -7,6 +7,7 @@ import com.teamwingitt.banking.contractTest.ICustomerManagerTest;
 import com.teamwingitt.banking.contractTest.IBankManagerTest;
 import com.teamwingitt.banking.contractTest.ManagerHolder;
 import implementations.db.BankManager;
+import implementations.db.CustomerManager;
 import java.io.IOException;
 import org.junit.BeforeClass;
 
@@ -29,7 +30,7 @@ public class ContractManagerDBTest {
         Utils.runSQLScript("customer_test_setup.sql");
         ManagerHolder.accountManager = null;
         ManagerHolder.bankManager = new BankManager();
-        ManagerHolder.customerManager = null;
+        ManagerHolder.customerManager = new CustomerManager();
     }
 
 }
