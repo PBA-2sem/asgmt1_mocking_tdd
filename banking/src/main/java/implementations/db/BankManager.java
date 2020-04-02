@@ -10,6 +10,7 @@ import dk.cphbusiness.banking.interfaces.Bank;
 import dto.mappers.AccountMapper;
 import dto.mappers.BankMapper;
 import exceptions.NotFoundException;
+import implementations.AccountImpl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 public class BankManager implements IBankManager {
 
     BankMapper bankmapper = new BankMapper();
-    AccountMapper accountmapper = new AccountMapper();
+    AccountMapper accountMapper = new AccountMapper();
     BankDAO bankDAO = new BankDAO();
 
     @Override
@@ -31,12 +32,9 @@ public class BankManager implements IBankManager {
     @Override
     public List<AccountDetails> getAccounts(CustomerIdentifier id) throws NotFoundException {
 
+        List<AccountImpl> accountsInternal = bankDAO.getAccounts(id);
         List<AccountDetails> accounts = new ArrayList<>();
-
-        Bank bank = (Bank) bankDAO.read(id.getId());
-
-//        List<String> result2 = new ArrayList(bank.getAccounts());
-        return null;
+        accountsInternal.forEach((a) -> accounts.add(accountMapper.fromInternal(a)));
+        return accounts;
     }
-
 }
