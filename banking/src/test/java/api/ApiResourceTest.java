@@ -32,6 +32,7 @@ import org.junit.runners.MethodSorters;
 public class ApiResourceTest {
 
     Gson gson = new Gson();
+    ApiResource instance = new ApiResource();
 
     @BeforeClass
     public static void before() throws IOException {
@@ -59,7 +60,6 @@ public class ApiResourceTest {
     public void testAGetCustomer() throws Exception {
         System.out.println("getCustomer");
         String id = "1";
-        ApiResource instance = new ApiResource();
         String expName = "Jeff";
         CustomerDetails result = gson.fromJson(instance.getCustomer(id), CustomerDetails.class);
         assertEquals(expName, result.getName());
@@ -75,7 +75,6 @@ public class ApiResourceTest {
     public void testAGetAccounts() throws Exception {
         System.out.println("getAccounts");
         String id = "1";
-        ApiResource instance = new ApiResource();
         String expName = "Jeff";
         int expNumberOfAccounts = 2;
         AccountDetails[] resultJson = gson.fromJson(instance.getAccounts(id), AccountDetails[].class);
@@ -98,7 +97,6 @@ public class ApiResourceTest {
     public void testAGetBank() throws Exception {
         System.out.println("getBank");
         String id = "1";
-        ApiResource instance = new ApiResource();
         String expResult = "Danske Bank";
         BankDetails result = gson.fromJson(instance.getBank(id), BankDetails.class);
         assertEquals(expResult, result.getName());
@@ -114,7 +112,6 @@ public class ApiResourceTest {
     public void testAGetBankAccounts() throws Exception {
         System.out.println("getBankAccounts");
         String id = "1";
-        ApiResource instance = new ApiResource();
         int expNumberOfAccounts = 2;
         String expName = "Danske Bank";
         AccountDetails[] resultJson = gson.fromJson(instance.getBankAccounts(id), AccountDetails[].class);
@@ -137,7 +134,6 @@ public class ApiResourceTest {
     public void testAGetAccount() throws Exception {
         System.out.println("getAccount");
         String id = "1";
-        ApiResource instance = new ApiResource();
         String expBankName = "Danske Bank";
         String expCustomerName = "Jeff";
         String expNumber = "1";
@@ -163,7 +159,6 @@ public class ApiResourceTest {
     public void testAGetBalance() throws Exception {
         System.out.println("getBalance");
         String id = "1";
-        ApiResource instance = new ApiResource();
         long expBalance = 20;
         long result = gson.fromJson(instance.getBalance(id), long.class);
         assertEquals(expBalance, result);
@@ -179,7 +174,6 @@ public class ApiResourceTest {
     public void testAGetWithdrawals() throws Exception {
         System.out.println("getWithdrawals");
         String id = "1";
-        ApiResource instance = new ApiResource();
         int expNumberOfWithdrawals = 0;
         MovementDetails[] resultJson = gson.fromJson(instance.getWithdrawals(id), MovementDetails[].class);
         List<MovementDetails> ListOfWithdrawals = Arrays.asList(resultJson);
@@ -196,7 +190,6 @@ public class ApiResourceTest {
     public void testAGetDeposits() throws Exception {
         System.out.println("getDeposits");
         String id = "1";
-        ApiResource instance = new ApiResource();
         int expNumberOfDeposits = 1;
         MovementDetails[] resultJson = gson.fromJson(instance.getDeposits(id), MovementDetails[].class);
         List<MovementDetails> ListOfDeposits = Arrays.asList(resultJson);
@@ -216,7 +209,6 @@ public class ApiResourceTest {
         String amount = "40";
         String source = "2";
         String target = "1";
-        ApiResource instance = new ApiResource();
         int expStatus = 200;
         Response resultResponse = instance.transferByAccountIdentifier(amount, source, target);
         assertEquals(expStatus, resultResponse.getStatus());
@@ -235,7 +227,6 @@ public class ApiResourceTest {
         String amount = "40";
         String sourceAccNumber = "1";
         String targetAccNumber = "2";
-        ApiResource instance = new ApiResource();
         int expStatus = 200;
         Response resultResponse = instance.transferByAccountNumber(amount, sourceAccNumber, targetAccNumber);
         assertEquals(expStatus, resultResponse.getStatus());
@@ -252,7 +243,6 @@ public class ApiResourceTest {
         System.out.println("deposit");
         String amount = "100";
         String id = "1";
-        ApiResource instance = new ApiResource();
         int expStatus = 200;
         Response resultResponse = instance.deposit(amount, id);
         assertEquals(expStatus, resultResponse.getStatus());
@@ -269,7 +259,6 @@ public class ApiResourceTest {
         System.out.println("withdraw");
         String amount = "100";
         String id = "1";
-        ApiResource instance = new ApiResource();
         int expStatus = 200;
         Response resultResponse = instance.withdraw(amount, id);
         assertEquals(expStatus, resultResponse.getStatus());
