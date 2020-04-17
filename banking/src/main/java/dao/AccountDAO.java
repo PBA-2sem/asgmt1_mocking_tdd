@@ -101,6 +101,7 @@ public class AccountDAO implements IDAO {
                     + "SET balance = ?\n"
                     + "WHERE number = ?;";
 
+            DBConnector.getConnection().setAutoCommit(false);
             stmt = DBConnector.getConnection().prepareStatement(sql);
             stmt.setInt(1, (int) balance);
             stmt.setString(2, id.toString());

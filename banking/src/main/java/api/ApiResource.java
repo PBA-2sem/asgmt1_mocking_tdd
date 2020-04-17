@@ -41,6 +41,13 @@ public class ApiResource {
     }
 
     //CUSTOMER
+    /**
+     * REST endpoint to get customer by id
+     *
+     * @param id
+     * @return CustomerDetails
+     * @throws NotFoundException
+     */
     @Path("customer")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,6 +56,13 @@ public class ApiResource {
         return gson.toJson(customerManager.getCustomer(cIdentifier));
     }
 
+    /**
+     * REST endpoint to get customer accounts by id
+     *
+     * @param id
+     * @return List of AccountDetails
+     * @throws NotFoundException
+     */
     @Path("customer/accounts")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -58,6 +72,13 @@ public class ApiResource {
     }
 
     //BANK
+    /**
+     * REST endpoint to get bank by id
+     *
+     * @param id
+     * @return BankDetails
+     * @throws NotFoundException
+     */
     @Path("bank")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,6 +87,13 @@ public class ApiResource {
         return gson.toJson(bankManager.getBank(bIdentifier));
     }
 
+    /**
+     * REST endpoint to get bank accounts by id
+     *
+     * @param id
+     * @return List of AccountDetails
+     * @throws NotFoundException
+     */
     @Path("bank/accounts")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -75,6 +103,13 @@ public class ApiResource {
     }
 
     //ACCOUNT
+    /**
+     * REST endpoint to get account by id
+     *
+     * @param id
+     * @return AccountDetails
+     * @throws NotFoundException
+     */
     @Path("account")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -83,6 +118,13 @@ public class ApiResource {
         return gson.toJson(accountManager.getAccount(aIdentifier));
     }
 
+    /**
+     * REST endpoint to get account balance by id
+     *
+     * @param id
+     * @return long
+     * @throws NotFoundException
+     */
     @Path("account/balance")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -91,6 +133,13 @@ public class ApiResource {
         return gson.toJson(accountManager.getBalance(aIdentifier));
     }
 
+    /**
+     * REST endpoint to get account withdrawals by id
+     *
+     * @param id
+     * @return List of MovementDetails
+     * @throws NotFoundException
+     */
     @Path("account/withdrawals")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -99,6 +148,13 @@ public class ApiResource {
         return gson.toJson(accountManager.getWithdrawals(aIdentifier));
     }
 
+    /**
+     * REST endpoint to get account deposits by id
+     *
+     * @param id
+     * @return List of MovementDetails
+     * @throws NotFoundException
+     */
     @Path("account/deposits")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -107,6 +163,15 @@ public class ApiResource {
         return gson.toJson(accountManager.getDeposits(aIdentifier));
     }
 
+    /**
+     * REST endpoint to post (transfer by id) amount from source to target
+     *
+     * @param amount
+     * @param source
+     * @param target
+     * @return Response.status(200)
+     * @throws NotFoundException
+     */
     @Path("account/transfer/id")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -126,6 +191,16 @@ public class ApiResource {
                 .build();
     }
 
+    /**
+     * REST endpoint to post (transfer by number) amount from sourceAccNumber to
+     * targetAccNumber
+     *
+     * @param amount
+     * @param sourceAccNumber
+     * @param targetAccNumber
+     * @return Response.status(200)
+     * @throws NotFoundException
+     */
     @Path("account/transfer/number")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -145,6 +220,14 @@ public class ApiResource {
                 .build();
     }
 
+    /**
+     * REST endpoint to deposit amount to account with id
+     *
+     * @param amount
+     * @param id
+     * @return MovementDetails
+     * @throws NotFoundException
+     */
     @Path("account/deposit")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -162,6 +245,14 @@ public class ApiResource {
                 .build();
     }
 
+    /**
+     * REST endpoint to withdraw amount from account with id
+     *
+     * @param amount
+     * @param id
+     * @return MovementDetails
+     * @throws NotFoundException
+     */
     @Path("account/withdraw")
     @POST
     @Produces(MediaType.APPLICATION_JSON)

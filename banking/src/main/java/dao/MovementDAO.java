@@ -74,7 +74,7 @@ public class MovementDAO implements IDAO {
 
             String sql = "INSERT INTO movement (amount, source_account, destination_account, type)\n"
                     + " VALUES (?, ?, ?, ?)";
-
+            DBConnector.getConnection().setAutoCommit(false);
             stmt = DBConnector.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, (int) amount);
             stmt.setString(2, sourceAccId);
