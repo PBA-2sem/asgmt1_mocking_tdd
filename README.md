@@ -1,4 +1,4 @@
-# Assignment 3 - Database Tests
+# Assignment 4 - REST API Test
 
 Assignment 1 (Unit test / Mock): [Link](https://datsoftlyngby.github.io/soft2020spring/resources/85f09312-01-assignment-mocking.pdf)
 
@@ -12,57 +12,41 @@ Assignment 3 (Database test): [Link](https://datsoftlyngby.github.io/soft2020spr
 
 Assignment 3 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/database-test)
 
+Assignment 4 (REST API Test): [Link](https://datsoftlyngby.github.io/soft2020spring/resources/5988f3c5-04-assignment-rest.pdf)
+
+Assignment 4 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-testing)
+
 ## Description
 
-This branch of the repository contains the solution to **Assignment 3 - Database Tests** [Link](https://datsoftlyngby.github.io/soft2020spring/resources/db4fc3df-03-assignment-database.pdf).
+This branch of the repository contains the solution to **Assignment 4 - REST API Test** [Link](https://datsoftlyngby.github.io/soft2020spring/resources/5988f3c5-04-assignment-rest.pdf).
 
-This repository contains a **banking-contract** project, as well as the main **banking** project. 
+## REST API Endpoints
 
-### Banking Contract project
-The Banking-contract project acts as a System operation contracts / “Remote” interface, thereby allowing e.g. a potential frontend to access method call:
+Rest API Endpoints corresponding with Banking Contract [methods](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-testing/banking-contract/src/main/java/com/teamwingitt/banking/contract):
 
-![banking_project](assets/banking_project.PNG)
+| Type 	| URI (with query example)                                            	| Banking Contract Method 	|
+|------	|----------------------------------------------------------	|---------------------------------------	|
+| GET  	| /api/customer?id=1                                       	| getCustomer                           	|
+| GET  	| /api/customer/accounts?id=1                              	| getAccounts                           	|
+| GET  	| /api/bank?id=1                                           	| getBank                               	|
+| GET  	| /api/bank/accounts?id=1                                  	| getAccounts                           	|
+| GET  	| /api/account?id=1                                        	| getAccount                            	|
+| GET  	| /api/account/balance?id=1                                	| getBalance                            	|
+| GET  	| /api/account/withdrawals?id=1                            	| getWithdrawals                        	|
+| GET  	| /api/account/deposits?id=1                               	| getDeposits                           	|
+| POST 	| /api/account/transfer/id?amount=40&source=2&target=1     	| transfer [by account identifier]      	|
+| POST 	| /api/account/transfer/number?amount=40&source=1&target=2 	| transfer [by accountnumber]           	|
+| POST 	| /api/account/deposit?amount=69&id=1                      	| deposit                               	|
+| POST 	| /api/account/withdraw?amount=69&id=1                     	| withdraw                              	|
 
-#### DTOs
-The banking-contract contains DTOs, Data-Transfer Objects, to be used as object "containers" to carry data between processes.
+## How to run (the tests?)
 
-#### Identifiers
-Each DTO implements a XIdentifier class, that identifies each DTO.
+- 
 
-#### Inteface Managers
-The banking-contract also contains interfaces for Account, Bank and Customer classes.
+## Test results
 
-#### Manager
-The contract has a test package that contains a ManagerHolder class, that contains a static XManager (i.e. IBankManager) for each of the interfaces specified above.
-
-#### XManagerTest
-
-The contract has a test package that contains test classes for each of the manager classes specified above, through instantiation of the MangerHolder class' static Xmanagers. Furthermore, specific test methods to test all interface methods are specified.
-
-### Banking project
-
-#### How to run
-To protect "production" credentials the project has a [DBConnectorTemplate.java](banking/src/main/java/DataLayer/DBConnectorTemplate.java) that should be copied in same folder and renamed to **DBConnector.java**, this file is the "production" DBConnector, and should have the right credentials, it will be ignored by git, and never pushed to remote.
-
-*Command line (bash) command to create file copy and rename class to correct name.*
-*Navigate to root folder of the projects and run following:*'
-
-```shell
-cp banking/src/main/java/DataLayer/DBConnectorTemplate.java banking/src/main/java/DataLayer/DBConnector.java && sed -i 's/DBConnectorTemplate/DBConnector/g' banking/src/main/java/DataLayer/DBConnector.java
-```
-
-#### Description
-The various tests described in the banking-contract projects XManagerTest classes wont work/pass in and of themselves. They only "work" by a JUnit test suite specified in the Banking project itself. 
-
-In the ContractManagerTest class, a JUnit test suite is specified to allow for aggregation of all test cases from the banking-contract test classes. 
-
-![Tests](assets/contract_manager_test.PNG)
-
-By using the @BeforeClass anotation, predefined XManagerDummy class files are "injected" into the ManagerHolder class, thereby supplying valid test data to the various tests described in the banking-contract, allowing them to run on "real" data. 
-
-The result of the contract tests:
-
-![Tests](assets/test_results_asgmt2.PNG)
+ -  
+ 
 
 
 ## Author Details
