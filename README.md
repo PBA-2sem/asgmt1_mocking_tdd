@@ -22,6 +22,8 @@ This branch of the repository contains the solution to **Assignment 4 - REST API
 
 ## REST API Test Execution
 
+From your terminal of choice, navigate to the "banking" folder.
+
 ### Run all project tests:
 
 ```
