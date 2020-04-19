@@ -22,6 +22,20 @@ This branch of the repository contains the solution to **Assignment 4 - REST API
 
 ## REST API Test Execution
 
+### Run all project tests:
+
+```
+mvn verify -Pwith_integration_test
+```
+
+### Run tests excluding intergration tests:
+
+```
+mvn verify
+```
+
+---
+
 During the test phase, the instructions specified in [ApiResourceTest.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/frontend-testing/banking/src/test/java/api/ApiResourceTest.java) are executed.
 
 First, the database connection is established & data is inserted into the database from various sql scripts.
