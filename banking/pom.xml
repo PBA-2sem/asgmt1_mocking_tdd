@@ -17,7 +17,7 @@
     </properties>
 
     <dependencies>
-        
+      
         <!--https://stackoverflow.com/a/42667182/8647713-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,6 +81,37 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+    
+    <profiles>
+        <profile>
+            <id>with_integration_test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.22.0</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <groups>api.Integration</groups>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+    
+    
     <build>
         <plugins>
             <plugin>
@@ -103,7 +134,18 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <excludedGroups>api.Integration</excludedGroups>
+                </configuration>
+            </plugin>
+            
         </plugins>
     </build>
+    
+    
     
 </project>

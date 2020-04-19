@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package api;
 
 import DTOs.AccountDetails;
@@ -22,12 +17,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
+@Category(Integration.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ApiResourceTest {
 
