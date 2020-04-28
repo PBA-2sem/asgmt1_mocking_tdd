@@ -1,4 +1,4 @@
-# Assignment 4 - REST API Test
+# Assignment 5 - Frontend Test
 
 Assignment 1 (Unit test / Mock): [Link](https://datsoftlyngby.github.io/soft2020spring/resources/85f09312-01-assignment-mocking.pdf)
 
@@ -16,64 +16,37 @@ Assignment 4 (REST API Test): [Link](https://datsoftlyngby.github.io/soft2020spr
 
 Assignment 4 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-test)
 
+Assignment 5 (Frontend Test): [Link](https://datsoftlyngby.github.io/soft2020spring/resources/bbc7852a-05-assignment-frontend.pdf)
+
+Assignment 5 Solution: [link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-test)
+
+## The acceptance-tested bank with front-end
+
 ## Description
 
-This branch of the repository contains the solution to **Assignment 4 - REST API Test** [Link](https://datsoftlyngby.github.io/soft2020spring/resources/5988f3c5-04-assignment-rest.pdf).
+This branch of the repository contains the solution to **Assignment 5 - Frontend Test** [Link](https://datsoftlyngby.github.io/soft2020spring/resources/bbc7852a-05-assignment-frontend.pdf).
 
-## REST API Test Execution
 
-From your terminal of choice, navigate to the "banking" folder.
+## Requirements
 
-### Run all project tests:
+- Supported Operating System: Windows and Mac
 
-```
-mvn verify -Pwith_integration_test
-```
+- Chrome Web Browser installed on your system. Please note the version (Settings->About). If it is Version 81.0.4044.129, skip the next part (it is already included in this project).
 
-### Run tests excluding intergration tests:
+- Download a Chromedriver version corresponding to your Chrome Web Browser version and your Operating System from https://chromedriver.storage.googleapis.com/index.html - Place the unzipped file in the following directory: 
 
-```
-mvn verify
-```
+    ```asgmt1_mocking_tdd/assets/chromedriver/ ```
 
----
+    - replace the version already there.
 
-During the test phase, the instructions specified in [ApiResourceTest.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/frontend-test/banking/src/test/java/api/ApiResourceTest.java) are executed.
+## How to Run
 
-First, the database connection is established & data is inserted into the database from various sql scripts.
+### Run Selenium tests:
 
-Afterwards, the tests specified in ApiResourceTest.java are run in sequence. 
+````
+mvn -Dtest=SeleniumTest test
+````
 
-The test methods make use of an instance of the [ApiResource.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/frontend-test/banking/src/main/java/api/ApiResource.java) where all the REST endpoints are specified. The API as a whole acts as a facade/wrapper around the various [Managers](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-test/banking/src/main/java/implementations/db) already implemented.
-
-Finally, the database connection is closed.
-
-## REST API Endpoints Overview
-
-Rest API Endpoints corresponding with Banking Contract [methods](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-test/banking-contract/src/main/java/com/teamwingitt/banking/contract):
-
-Running the Banking project locally, The root REST API URL is: [http://localhost:8080/banking](http://localhost:8080/banking) (port may vary). 
-
-After the root URl, the following URIs exist:
-
-| Type 	| URI (with query example)                                            	| Banking Contract Method 	|
-|------	|----------------------------------------------------------	|---------------------------------------	|
-| GET  	| /api/customer?id=1                                       	| getCustomer                           	|
-| GET  	| /api/customer/accounts?id=1                              	| getAccounts                           	|
-| GET  	| /api/bank?id=1                                           	| getBank                               	|
-| GET  	| /api/bank/accounts?id=1                                  	| getAccounts                           	|
-| GET  	| /api/account?id=1                                        	| getAccount                            	|
-| GET  	| /api/account/balance?id=1                                	| getBalance                            	|
-| GET  	| /api/account/withdrawals?id=1                            	| getWithdrawals                        	|
-| GET  	| /api/account/deposits?id=1                               	| getDeposits                           	|
-| POST 	| /api/account/transfer/id?amount=40&source=2&target=1     	| transfer [by account identifier]      	|
-| POST 	| /api/account/transfer/number?amount=40&source=1&target=2 	| transfer [by accountnumber]           	|
-| POST 	| /api/account/deposit?amount=69&id=1                      	| deposit                               	|
-| POST 	| /api/account/withdraw?amount=69&id=1                     	| withdraw                              	|
-
-## Test results
-
- ![REST API Test Results](<assets/api_test_results.PNG>)
  
 ## Author Details
 
