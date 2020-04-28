@@ -14,7 +14,7 @@ Assignment 3 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tre
 
 Assignment 4 (REST API Test): [Link](https://datsoftlyngby.github.io/soft2020spring/resources/5988f3c5-04-assignment-rest.pdf)
 
-Assignment 4 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-testing)
+Assignment 4 Solution: [Link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/rest-api-test)
 
 ## Description
 
@@ -36,19 +36,19 @@ mvn verify
 
 ---
 
-During the test phase, the instructions specified in [ApiResourceTest.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/frontend-testing/banking/src/test/java/api/ApiResourceTest.java) are executed.
+During the test phase, the instructions specified in [ApiResourceTest.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/rest-api-test/banking/src/test/java/api/ApiResourceTest.java) are executed.
 
 First, the database connection is established & data is inserted into the database from various sql scripts.
 
 Afterwards, the tests specified in ApiResourceTest.java are run in sequence. 
 
-The test methods make use of an instance of the [ApiResource.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/frontend-testing/banking/src/main/java/api/ApiResource.java) where all the REST endpoints are specified. The API as a whole acts as a facade/wrapper around the various [Managers](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-testing/banking/src/main/java/implementations/db) already implemented.
+The test methods make use of an instance of the [ApiResource.java](https://github.com/PBA-2sem/asgmt1_mocking_tdd/blob/rest-api-test/banking/src/main/java/api/ApiResource.java) where all the REST endpoints are specified. The API as a whole acts as a facade/wrapper around the various [Managers](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/rest-api-test/banking/src/main/java/implementations/db) already implemented.
 
 Finally, the database connection is closed.
 
 ## REST API Endpoints Overview
 
-Rest API Endpoints corresponding with Banking Contract [methods](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/frontend-testing/banking-contract/src/main/java/com/teamwingitt/banking/contract):
+Rest API Endpoints corresponding with Banking Contract [methods](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/rest-api-test/banking-contract/src/main/java/com/teamwingitt/banking/contract):
 
 Running the Banking project locally, The root REST API URL is: [http://localhost:8080/banking](http://localhost:8080/banking) (port may vary). 
 
