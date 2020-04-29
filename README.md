@@ -26,6 +26,14 @@ Assignment 5 Solution: [link](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tre
 
 This branch of the repository contains the solution to **Assignment 5 - Frontend Test** [Link](https://datsoftlyngby.github.io/soft2020spring/resources/bbc7852a-05-assignment-frontend.pdf).
 
+### Simple HTML+JS frontend
+
+The frontend consists of a basic HTML+JS site, that acts as a basic front-end for our bank applications [REST API](https://github.com/PBA-2sem/asgmt1_mocking_tdd/tree/rest-api-test#rest-api-endpoints-overview)
+
+Preview:
+
+![](assets/frontend.PNG)
+
 
 ## Requirements
 
@@ -39,7 +47,7 @@ This branch of the repository contains the solution to **Assignment 5 - Frontend
 
     - replace the version already there.
 
-## How to Run
+## How to Run 
 
 ### Run Selenium tests:
 

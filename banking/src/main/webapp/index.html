@@ -1,16 +1,223 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>Simple HTML+JS frontend</h1>
+
+        <table>
+            <tr>
+                <td>
+                    <label>get customer</label>
+                    <form action="/">
+                        <input type="number" id="input_customer_number" value="1"><br>
+                        <input type="button" value="getCustomer" id="get_customer" onclick="getCustomer()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="customer"></h3>
+                    <p id="err_customer" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get accounts</label>
+                    <form action="/">
+                        <input type="number" id="input_customer_account_number" value="1"><br>
+                        <input type="button" value="getAccounts" id="get_accounts" onclick="getAccounts()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="customer_accounts"></h3>
+                    <p id="err_customer_accounts" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get bank</label>
+                    <form action="/">
+                        <input type="number" id="input_bank_id"  value="1"><br>
+                        <input type="button" value="getBank" id="get_bank" onclick="getBank()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="bank_id"></h3>
+                    <p id="err_bank_id" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get accounts (bank)</label>
+                    <form action="/">
+                        <input type="number" id="input_bank_accounts_id"  value="1"><br>
+                        <input type="button" value="getAccounts (bank)" id="get_bank_acc" onclick="getBankAccounts()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="bank_acc_id"></h3>
+                    <p id="err_bank_acc_id" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get account</label>
+                    <form action="/">
+                        <input type="number" id="input_account_id"  value="1"><br>
+                        <input type="button" value="getAccount" id="get_account" onclick="getAccount()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="account"></h3>
+                    <p id="err_account" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get balance</label>
+                    <form action="/">
+                        <input type="number" id="input_acc_balance_id"  value="1"><br>
+                        <input type="button" value="getBalance" id="get_acc_balance" onclick="getBalance()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="balance"></h3>
+                    <p id="err_balance" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get withdrawals</label>
+                    <form action="/">
+                        <input type="number" id="input_acc_withdrawals"  value="1"><br>
+                        <input type="button" value="getWithdrawals" id="get_acc_withdrawals" onclick="getWithdrawals()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="withdrawals"></h3>
+                    <p id="err_withdrawals" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>get deposits</label>
+                    <form action="/">
+                        <input type="number" id="input_acc_deposits"  value="1"><br>
+                        <input type="button" value="getDeposits" id="get_acc_deposits" onclick="getDeposits()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="deposits"></h3>
+                    <p id="err_deposits" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>transfer (by accounts identifier)</label>
+                    <form action="/">
+                        <input type="number" id="transfer_acc_id_amount"  value="100"><br>
+                        <input type="number" id="transfer_acc_id_source"  value="2"><br>
+                        <input type="number" id="transfer_acc_id_target"  value="1"><br>
+                        <input type="button" value="transfer (account identifier)" id="post_transfer_acc_id_amount" onclick="transferByAccId()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="transfer_acc_id_statuscode"></h3>
+                    <p id="err_transfer_acc_id_statuscode" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                    <label>transfer (by accounts number)</label>
+                    <form action="/">
+                        <input type="number" id="transfer_acc_number_amount"  value="100"><br>
+                        <input type="number" id="transfer_acc_number_source"  value="1"><br>
+                        <input type="number" id="transfer_acc_number_target"  value="2"><br>
+                        <input type="button" value="transfer (account number)" id="post_transfer_acc_number_amount" onclick="transferByAccNumber()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="transfer_acc_number_statuscode"></h3>
+                    <p id="err_transfer_acc_number_statuscode" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                   <label>deposit</label>
+                    <form action="/">
+                        <input type="number" id="deposit_amount"  value="100"><br>
+                        <input type="number" id="deposit_id"  value="1"><br>
+                        <input type="button" value="deposit" id="submit_deposit" onclick="deposit()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="deposit"></h3>
+                    <p id="err_deposit" style="color:red"></p>
+                </td>
+            </tr>
+
+            <tr><td><hr></td></tr>
+
+            <tr>
+                <td>
+                   <label>withdraw</label>
+                    <form action="/">
+                        <input type="number" id="withdraw_amount"  value="100"><br>
+                        <input type="number" id="withdraw_id"  value="1"><br>
+                        <input type="button" value="withdraw" id="submit_withdraw" onclick="withdraw()"/>
+                    </form> 
+                </td>
+                <td>
+                    <h3 id="withdraw"></h3>
+                    <p id="err_withdraw" style="color:red"></p>
+                </td>
+            </tr>
+
+        </table>
+
+
+
+
+
+
+
+
+        <!--Results-->
+
+
+
+
+        <script src="script.js"></script>
     </body>
 </html>
