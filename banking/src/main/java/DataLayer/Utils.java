@@ -29,7 +29,7 @@ public class Utils {
 
     public static void establishDBConnection() {
         String DRIVER = "com.mysql.cj.jdbc.Driver";
-        String URL = "jdbc:mysql://207.154.222.88:3306/bankingTest";
+        String URL = "jdbc:mysql://207.154.222.88:3306/bankingTest?&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String USER = "bank_tester"; // test user
         String PASSWORD = "passw0rd";
         Connection conn = null;

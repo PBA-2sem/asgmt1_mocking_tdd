@@ -35,6 +35,30 @@ Preview:
 ![](assets/frontend.PNG)
 
 
+### Selenium frontend tests
+
+When running the selenium tests, the selenium webdriver automates the control of the locally installed Chrome webdrowser, thus automates the input of data to textfields, the clicking of buttons etc.
+Furthermore, the tests then wait for relevant HTML fields on the page to be present, before asserting expected results.
+
+The following 5 tests are performed:
+
+**testDefaultRestApiPage()** - Test that the h1 text is visible when 
+navigation to the rest api page
+**testGetCustomer1()** - Test that getCustomer with customerid 1 results in a found customer
+
+**testGetCustomer11()** - Test that getCustomer with customerid 11 results in an error message
+
+**testTransfer100From2To1ByAccountId()** - Test that transfer by account id with amount 100 from source 2 to target 1 results in a succesful transfer
+
+**testTransfer100From2To11ByAccountId()** - Test that transfer by account id with amount 100 from source 2 to target 11 results in an error.
+
+### Test Execution View
+![](assets/frontend_test_execution.gif)
+
+### Test Results
+![](assets/frontend_test_results.PNG)
+
+
 ## Requirements
 
 - Supported Operating System: Windows and Mac
