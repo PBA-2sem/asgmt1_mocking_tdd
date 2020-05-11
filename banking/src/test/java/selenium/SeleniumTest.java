@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author Alexander W. Hørsted-Andersen <awha86@gmail.com>
  */
 public class SeleniumTest {
-
+    
     static WebDriver driver = null;
     static WebDriverWait wait = null;
 
@@ -37,12 +37,12 @@ public class SeleniumTest {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 3); //global wait, 3 seconds
     }
-
+    
     @AfterClass
     public static void teardown() throws SQLException {
         driver.quit();
     }
-
+    
     @Test
     /**
      * Test that the h1 text is visible when navigation to the rest api page
@@ -54,7 +54,7 @@ public class SeleniumTest {
         String result = driver.findElement(By.cssSelector("body > h1")).getText();
         assertEquals(expected, result);
     }
-
+    
     @Test
     /**
      * Test that getCustomer with customerid 1 results in a found customer
@@ -62,7 +62,7 @@ public class SeleniumTest {
     public void testGetCustomer1() throws InterruptedException {
         System.out.println("GetCustomer1");
         driver.get("http://localhost:8084/banking/");
-
+        
         String customerNumberInput = "1";
         String expected = "{\"cpr\":\"1\",\"name\":\"Jeff\",\"bank\":\"\"}"; //{"cpr":"1","name":"Jeff","bank":""}
 
@@ -83,7 +83,7 @@ public class SeleniumTest {
         String result = driver.findElement(By.id(customerResultLocator)).getText();
         assertEquals(expected, result);
     }
-
+    
     @Test
     /**
      * Test that getCustomer with customerid 11 results in an error message
@@ -91,9 +91,9 @@ public class SeleniumTest {
     public void testGetCustomer11() throws InterruptedException {
         System.out.println("GetCustomer11");
         driver.get("http://localhost:8084/banking/");
-
+        
         String customerNumberInput = "11";
-        String expectedResult = "Error: 500 (Internal Server Error)."; //not found
+        String expectedResult = "Error: 500"; //not found
 
         //locators
         String getCustomerInputLocator = "input_customer_number";
@@ -110,18 +110,18 @@ public class SeleniumTest {
         GetCustomerButton.click();
         wait.until(ExpectedConditions.visibilityOf(customerError));
         String result = driver.findElement(By.id(customerErrorLocator)).getText();
-        assertEquals(expectedResult, result);
+        assertTrue(result.contains(expectedResult));
     }
-
+    
     @Test
     /**
      * Test that transfer by account id with amount 100 from source 2 to target
-     * 1 results in a succesful transfer
+     * 1 results in a successful transfer
      */
     public void testTransfer100From2To1ByAccountId() throws InterruptedException {
         System.out.println("Transfer100From2To1ByAccountId");
         driver.get("http://localhost:8084/banking/");
-
+        
         String amount = "100";
         String source = "2";
         String target = "1";
@@ -149,9 +149,9 @@ public class SeleniumTest {
         wait.until(ExpectedConditions.visibilityOf(transferByAccountIdResult));
         String result = driver.findElement(By.id(transferByAccountIdResultLocator)).getText();
         assertEquals(expectedResult, result);
-
+        
     }
-
+    
     @Test
     /**
      * Test that transfer by account id with amount 100 from source 2 to target
@@ -160,11 +160,11 @@ public class SeleniumTest {
     public void testTransfer100From2To11ByAccountId() throws InterruptedException {
         System.out.println("Transfer100From2To11ByAccountId");
         driver.get("http://localhost:8084/banking/");
-
+        
         String amount = "100";
         String source = "2";
         String target = "11";
-        String expectedResult = "Error: 500 (Internal Server Error)."; //not found
+        String expectedResult = "Error: 500"; //not found
 
         //locators
         String transferByAccountIdAmountLocator = "transfer_acc_id_amount";
@@ -187,7 +187,7 @@ public class SeleniumTest {
         transferByAccountIdButtonInput.click();
         wait.until(ExpectedConditions.visibilityOf(transferByAccountIdError));
         String result = driver.findElement(By.id(transferByAccountIdErrorLocator)).getText();
-        assertEquals(expectedResult, result);
+        assertTrue(result.contains(expectedResult));
     }
-
+    
 }
