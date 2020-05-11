@@ -75,6 +75,8 @@ navigation to the rest api page
 
 ### Run Selenium tests:
 
+From the banking project:
+
 ````
 mvn -Dtest=SeleniumTest test
 ````
